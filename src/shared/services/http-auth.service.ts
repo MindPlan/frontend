@@ -63,8 +63,6 @@ export class EnhancedWithAuthHttpService {
     const { accessToken } = useAuthStore.getState();
 
     if (!accessToken) {
-      console.log('at is missing');
-
       throw new Error('Access token is missing');
     }
 
