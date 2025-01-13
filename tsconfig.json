@@ -1,69 +1,32 @@
 {
-  "types": [
-    "vite/client"
-  ],
-  "compilerOptions": {
-    "module": "ES2022",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "outDir": "./dist",
-    "incremental": true,
-    "useDefineForClassFields": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "composite": true,
-    "target": "ES2022",
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "jsx": "react",
-    "paths": {
-      "~assets/*": [
-        "src/assets/*"
-      ],
-      "~modules/*": [
-        "src/modules/*"
-      ],
-      "~router/*": [
-        "src/router/*"
-      ],
-      "~shared/*": [
-        "src/shared/*"
-      ],
-      "~store/*": [
-        "src/store/*"
-      ],
-      "~typings/*": [
-        "src/typings/*"
-      ],
-      "~/*": [
-        "src/*"
-      ],
-      "~layouts/*": [
-        "src/layouts/*"
-      ],
-      "~components/*": [
-        "src/components/*"
-      ],
-      "~images/*": [
-        "src/assets/images/*"
-      ],
-      "~utils/*": [
-        "src/shared/utils/*"
-      ]
+    "compilerOptions": {
+        "jsx": "react",
+        "baseUrl": ".",
+        "paths": {
+            "~assets/*": [
+                "src/assets/*"
+            ],
+            "~shared/*": [
+                "src/shared/*"
+            ],
+            "~store/*": [
+                "src/store/*"
+            ],
+            "~/*": [
+                "src/*"
+            ],
+            "~modules/*": [
+                "src/modules/*"
+            ],
+            "~utils/*": [
+                "src/shared/utils/*"
+            ],
+            "~services/*": [
+                "src/shared/services/*"
+            ],
+            "~auth/*": [
+                "src/modules/auth/*"
+            ]
+        }
     }
-  },
-  "include": [
-    "./src/**/*",
-    "./vite.config.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    ".vscode",
-    ".idea"
-  ]
 }
