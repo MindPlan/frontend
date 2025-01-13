@@ -2,6 +2,10 @@
     "compilerOptions": {
         "jsx": "react",
         "baseUrl": ".",
+        "module": "esnext",
+        "target": "ES2020",
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
         "paths": {
             "~assets/*": [
                 "src/assets/*"
@@ -18,14 +22,14 @@
             "~modules/*": [
                 "src/modules/*"
             ],
-            "~utils/*": [
-                "src/shared/utils/*"
+            "~auth/*": [
+                "src/modules/auth/*"
             ],
             "~services/*": [
                 "src/shared/services/*"
             ],
-            "~auth/*": [
-                "src/modules/auth/*"
+            "~utils/*": [
+                "src/shared/utils/*"
             ]
         }
     }
