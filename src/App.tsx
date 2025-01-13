@@ -1,15 +1,16 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
 import React from "react";
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import { authService } from './modules/auth/services/auth.service';
 
 const App: React.FC = () => {
   return (
     <>
-      <GoogleOAuthProvider clientId="167874588301-27d7kgkfd056ju4jh7oidop7mnqv3cks.apps.googleusercontent.com">
+      <GoogleOAuthProvider clientId={import.meta.env.VITE_CLIENT_ID}>
         <GoogleLogin
-          onSuccess={credentialResponse => {
-            console.log(JSON.stringify(credentialResponse, null, 2));
+          onSuccess={async ({ credential }) => {
+            const result = await authService.sendGoogleJWT(credential);
+            
+            console.log(result);
           }}
           onError={() => {
             console.log('Login Failed');
