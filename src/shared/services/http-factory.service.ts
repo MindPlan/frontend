@@ -11,3 +11,5 @@ export class HttpFactoryService {
     return new EnhancedWithAuthHttpService(this.createHttpService());
   }
 }
+
+export const httpFactoryService = new HttpFactoryService();
