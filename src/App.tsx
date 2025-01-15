@@ -1,6 +1,5 @@
 import React from "react";
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
-import { authService } from './modules/auth/services/auth.service';
 
 const App: React.FC = () => {
   return (
@@ -8,9 +7,9 @@ const App: React.FC = () => {
       <GoogleOAuthProvider clientId={import.meta.env.VITE_CLIENT_ID}>
         <GoogleLogin
           onSuccess={async ({ credential }) => {
-            const result = await authService.sendGoogleJWT(credential);
+            // const result = await authService.sendGoogleJWT(credential, 'registration');
             
-            console.log(result);
+            console.log(credential);
           }}
           onError={() => {
             console.log('Login Failed');
