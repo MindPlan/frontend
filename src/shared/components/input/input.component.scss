@@ -1,0 +1,11 @@
+.input {
+
+  &--filled {}
+  &--warning {}
+  &--success {}
+  &--error {}
+
+  &:hover {}
+  &:focus {}
+  &:disabled {}
+}
