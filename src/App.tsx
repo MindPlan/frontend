@@ -1,24 +1,16 @@
-import React from "react";
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { PublicRoutes } from './modules/auth/components/public-routes.component';
+import { PrivateRoutes } from './modules/auth/components/private-routes.components';
+import useAuthStore from './store/auth.store';
 
 const App: React.FC = () => {
+  const { isAuthenticated } = useAuthStore();
+  
   return (
-    <>
-      <GoogleOAuthProvider clientId={import.meta.env.VITE_CLIENT_ID}>
-        <GoogleLogin
-          onSuccess={async ({ credential }) => {
-            // const result = await authService.sendGoogleJWT(credential, 'registration');
-            
-            console.log(credential);
-          }}
-          onError={() => {
-            console.log('Login Failed');
-          }}
-          
-          size="large"
-        />
-      </GoogleOAuthProvider>
-    </>
+    <Router>
+      {isAuthenticated ? <PrivateRoutes /> : <PublicRoutes />}
+    </Router>
   )
 }
 

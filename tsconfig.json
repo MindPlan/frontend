@@ -22,14 +22,14 @@
             "~modules/*": [
                 "src/modules/*"
             ],
-            "~auth/*": [
-                "src/modules/auth/*"
+            "~utils/*": [
+                "src/shared/utils/*"
             ],
             "~services/*": [
                 "src/shared/services/*"
             ],
-            "~utils/*": [
-                "src/shared/utils/*"
+            "~auth/*": [
+                "src/modules/auth/*"
             ]
         }
     }
