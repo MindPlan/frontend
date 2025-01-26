@@ -36,6 +36,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      pages: write
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
