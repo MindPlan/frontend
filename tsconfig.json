@@ -2,7 +2,7 @@
     "compilerOptions": {
         "jsx": "react",
         "baseUrl": ".",
-        "module": "nodenext",
+        "module": "esnext",
         "target": "ES2020",
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
