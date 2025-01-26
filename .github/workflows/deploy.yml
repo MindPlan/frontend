@@ -25,6 +25,9 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Ensure build directory exists
+        run: mkdir -p ./build
+
       - name: Add 404.html to build directory
         run: cp ./404.html ./build/
 
