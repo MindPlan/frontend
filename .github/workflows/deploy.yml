@@ -25,20 +25,19 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Add 404.html to build directory
+        run: cp ./404.html ./build/
+
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
         with:
           name: production-files
-          path: ./dist
+          path: ./build
 
   deploy:
-    name: Deploy
+    name: Deploy to GitHub Pages
     needs: build
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-      pages: write
 
     steps:
       - name: Checkout repo
@@ -48,10 +47,10 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: production-files
-          path: ./dist
+          path: ./build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./build
