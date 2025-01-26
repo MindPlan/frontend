@@ -29,12 +29,16 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: production-files
-          path: ./build
+          path: ./dist
 
   deploy:
-    name: Deploy to GitHub Pages
+    name: Deploy
     needs: build
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pages: write
 
     steps:
       - name: Checkout repo
@@ -44,10 +48,10 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: production-files
-          path: ./build
+          path: ./dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: ./dist
