@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Route, Routes } from 'react-router-dom';
+import {Link, Route, Routes} from 'react-router-dom';
 import { RedirectPage } from '../pages/redirect.page';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
@@ -34,7 +34,7 @@ const GooglePage = () => {
 
 export const PublicRoutes = () => (
   <Routes>
-    <Route path="/" element={<>Landing</>}/>
+    <Route path="/" element={<>Landing <Link to="/dev/get-google-token">Get token!!!</Link></>}/>
     <Route path="/registration" element={<>Registration</>}/>
     <Route path="/login" element={<>Login</>}/>
     <Route path="/confirmation" element={<>Confirmation</>}/>
