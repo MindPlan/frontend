@@ -19,9 +19,6 @@ dist-ssr
 .env.dev
 .env.prod
 
-# lock packages
-package-lock.json
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
