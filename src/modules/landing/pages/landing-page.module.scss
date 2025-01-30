@@ -1,0 +1,63 @@
+@use '~shared/styles/colors.scss' as colors;
+
+* { // todo add to base styles
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding-top: 40px;
+  padding-left: 28px;
+  padding-right: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 160px;
+}
+
+.logo {
+  width: 57px;
+  height: 57px;
+  background-color: colors.$COLOR_GRAY_100;
+  border-radius: 10px;
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1); // todo create a variable
+}
+
+.textContainer {
+  text-align: center;
+}
+
+.title {
+  font-size: 120px; // todo change to a variable
+  font-weight: 500; // todo change to a variable
+  line-height: 100%;
+  color: colors.$COLOR_GRAY_100;
+  margin: 0;
+  margin-bottom: 16px;
+}
+
+.description {
+  font-size: 40px; // todo change to a variable
+  line-height: 50px; // todo change to a variable
+  font-weight: 400; // todo change to a variable
+  color: colors.$COLOR_GRAY_30;
+  margin: 0;
+  margin-bottom: 56px;
+}
+
+.continueBtnContainer {
+  margin-bottom: 39px;
+}

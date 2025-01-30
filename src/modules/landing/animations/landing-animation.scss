@@ -1,0 +1,23 @@
+#landingAnimationContainer {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  // height: 605px;
+  // max-width: 882px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & canvas {
+    position: absolute;
+    z-index: -1;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 110% !important;
+    height: 1000px !important;
+    overflow: hidden;
+    top: -250px;
+  }
+}

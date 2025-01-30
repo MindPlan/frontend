@@ -1,0 +1,16 @@
+@use '~shared/styles/colors.scss' as colors;
+
+.progressTrack {
+  margin: 0 auto;
+  width: 608px;
+  height: 5px;
+  background-color: colors.$COLOR_GRAY_10;
+  border-radius: 6px;
+  margin-bottom: 56px;
+}
+
+.progressBar {
+  height: 5px;
+  background-color: colors.$COLOR_GRAY_100;
+  border-radius: 8px;
+}
