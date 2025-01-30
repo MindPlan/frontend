@@ -4,10 +4,15 @@ import textureSrc from '~assets/animation-images/login-animation.png';
 export function initLoginAnimation(): () => void {
   const container = document.getElementById('login-animation-container');
 
-  if (!container) return () => {};
+  if (!container) {
+    return () => {};
+  }
 
   const existingCanvas = container.querySelector('canvas');
-  if (existingCanvas) return () => {};
+
+  if (existingCanvas) {
+    return () => {};
+  }
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
@@ -27,7 +32,10 @@ export function initLoginAnimation(): () => void {
   loader.load(textureSrc, (texture: THREE.Texture) => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    
+    if (!ctx) {
+      return;
+    }
 
     canvas.width = texture.image.width;
     canvas.height = texture.image.height;
@@ -46,17 +54,16 @@ export function initLoginAnimation(): () => void {
     for (let y = 0; y < canvas.height; y += gap) {
       for (let x = 0; x < canvas.width; x += gap) {
         const index = (y * canvas.width + x) * 4;
-        const r = imageData[index];
-        const g = imageData[index + 1];
-        const b = imageData[index + 2];
-        const a = imageData[index + 3];
+        const red = imageData[index];
+        const green = imageData[index + 1];
+        const blue = imageData[index + 2];
+        const alpha = imageData[index + 3];
+        const targetX = x - canvas.width / 2;
+        const targetY = -(y - canvas.height / 2);
+        const targetZ = 0;
 
-        if (a > 0) {
-          targetPositions.push(
-            x - canvas.width / 2,
-            -(y - canvas.height / 2),
-            0
-          );
+        if (alpha > 0) {
+          targetPositions.push(targetX, targetY, targetZ);
 
           positions.push(
             (Math.random() - 0.5) * window.innerWidth,
@@ -64,7 +71,7 @@ export function initLoginAnimation(): () => void {
             Math.random() * 400 - 200
           );
 
-          colors.push(r / 255, g / 255, b / 255);
+          colors.push(red / 255, green / 255, blue / 255);
 
           scales.push(Math.random() * 0.5 + 0.5);
           randomOffsets.push(Math.random() * 0.5 - 0.25);

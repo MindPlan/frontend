@@ -20,10 +20,11 @@ export function initRegistrationAnimation(): () => void {
   camera.position.z = 800;
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
+  const loader = new THREE.TextureLoader();
+
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
 
-  const loader = new THREE.TextureLoader();
   loader.load(textureSrc, (texture: THREE.Texture) => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -47,13 +48,12 @@ export function initRegistrationAnimation(): () => void {
         const green = imageData[index + 1];
         const blue = imageData[index + 2];
         const alpha = imageData[index + 3];
+        const targetX = x - canvas.width / 2;
+        const targetY = -(y - canvas.height / 2);
+        const targetZ = 0;
 
         if (alpha > 0) {
-          targetPositions.push(
-            x - canvas.width / 2,
-            -(y - canvas.height / 2),
-            0
-          );
+          targetPositions.push(targetX, targetY, targetZ);
           positions.push(
             (Math.random() - 0.5) * window.innerWidth,
             (Math.random() - 0.5) * window.innerHeight,

@@ -15,14 +15,15 @@
     margin: 0;
     padding: 0;
     width: 90% !important;
-    height: 815px !important;
+    height: 750px !important;
     overflow: hidden;
     bottom: 0;
-    transform: translateY(25%);
+    transform: translateY(27%);
 
     @media screen and (max-height: 768px) {
-      height: 515px !important;
-      width: 882px !important;
+      height: 475px !important;
+      width: 852px !important;
+      transform: translateY(28%);
     }
   }
 }

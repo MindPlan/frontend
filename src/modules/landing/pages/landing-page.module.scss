@@ -33,13 +33,16 @@
 }
 
 .logo {
-  width: 57px;
-  height: 57px;
+  width: 59px;
+  height: 59px;
+  border-radius: 13px;
   background-color: colors.$COLOR_GRAY_100;
-  border-radius: 10px;
   cursor: pointer;
-  transform: scale(1.1);
   transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1); // todo create a variable
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .textContainer {
