@@ -11,6 +11,7 @@ interface Props<T extends FieldValues> {
   placeholder?: string;
   label?: string;
   RightIcon?: React.FC<SVGProps<SVGSVGElement>>;
+  LeftIcon?: React.FC<SVGProps<SVGSVGElement>>;
   defaultValue?: PathValue<T, Path<T>>;
   error?: string;
   disabled?: boolean;
@@ -21,6 +22,7 @@ const Input = <T extends FieldValues>({
   name,
   label = '',
   RightIcon,
+  LeftIcon,
   control,
   defaultValue,
   type = 'text',
@@ -41,12 +43,19 @@ const Input = <T extends FieldValues>({
           {label}
         </label>
       )}
+      
       <Controller
         name={name}
         control={control}
         defaultValue={defaultValue}
         render={({field}) => (
           <>
+            {LeftIcon && (
+              <span className="icon">
+                <LeftIcon className="icon__svg"/>
+              </span>
+            )}
+            
             <input
               {...field}
               id={name}
@@ -55,9 +64,10 @@ const Input = <T extends FieldValues>({
               disabled={disabled}
               className={classNames(
                 'input',
-                error.length && 'input-error',
+                error.length && 'input--error',
               )}
             />
+            
             {RightIcon && (
               <span className="icon">
                 <RightIcon className="icon__svg"/>
@@ -66,6 +76,7 @@ const Input = <T extends FieldValues>({
           </>
         )}
       />
+      
       {error && (
         <p className="error-message">
           {error}
