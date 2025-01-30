@@ -1,40 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import styles from './landing-page.module.scss';
+import { landingPageInfos } from '~modules/auth/utils/landing.page.data';
+import '../animations/landing-animation';
 import Logo from '~assets/svg/logo.svg';
-import '../animations/landing-animation.js';
-import './landing-animation.scss';
 import ProgressBar from '../components/progress.bar';
-
-interface LandingPageInfo {
-  title: string;
-  description: string;
-  btnText: string;
-}
-
-const landingPageInfos: LandingPageInfo[] = [
-  {
-    title: 'Welcome to MindPlan',
-    description:
-      'Organize your time, achieve your goals, and stay productive while maintaining balance.',
-    btnText: 'Continue',
-  },
-  {
-    title: 'Track Your Progress Effortlessly',
-    description:
-      'Customize your tasks, prioritize with ease, and create a system. MindPlan adapts to your unique workflow to help you thrive.',
-    btnText: 'Continue',
-  },
-  {
-    title: 'Your Productivity, Your Way',
-    description:
-      'Visualize your journey, monitor milestones, and celebrate every achievement. With MindPlan, staying on top of your goals has never been easier.',
-    btnText: "Let's get started",
-  },
-];
+import styles from './landing-page.module.scss';
+import './../animations/landing-animation.scss';
 
 const LandingPage: React.FC = () => {
-
   const savedIndex = localStorage.getItem('landingPageIndex');
   const savedProgress = localStorage.getItem('landingPageProgress');
 
@@ -58,7 +31,6 @@ const LandingPage: React.FC = () => {
       }
     }, 10);
 
-    // Оновлюємо прогрес у localStorage
     localStorage.setItem('landingPageProgress', progress.toString());
     localStorage.setItem('landingPageIndex', index.toString());
 
@@ -72,12 +44,12 @@ const LandingPage: React.FC = () => {
     }
   };
 
-    const handleLogoClick = () => {
-      setIndex(0);
-      setProgress(0);
-      localStorage.removeItem('landingPageIndex');
-      localStorage.removeItem('landingPageProgress');
-    };
+  const handleLogoClick = () => {
+    setIndex(0);
+    setProgress(0);
+    localStorage.removeItem('landingPageIndex');
+    localStorage.removeItem('landingPageProgress');
+  };
 
   const currentInfo = landingPageInfos[index];
 
@@ -87,6 +59,7 @@ const LandingPage: React.FC = () => {
         <div className={styles.logo} onClick={handleLogoClick}>
           <Logo />
         </div>
+
         <div>Button</div>
       </header>
 
@@ -112,7 +85,7 @@ const LandingPage: React.FC = () => {
       </section>
 
       <div
-        id='landingAnimationContainer'
+        id='landing-animation-container'
         className={styles.animationContainer}
       ></div>
     </div>

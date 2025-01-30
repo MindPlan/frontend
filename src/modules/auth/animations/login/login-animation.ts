@@ -1,14 +1,13 @@
 import * as THREE from 'three';
 import textureSrc from '~assets/animation-images/login-animation.png';
 
-export function initLoginAnimation() {
-  const container = document.getElementById('loginAnimationContainer');
-  if (!container) return;
+export function initLoginAnimation(): () => void {
+  const container = document.getElementById('login-animation-container');
 
-    const existingCanvas = container.querySelector('canvas');
-    if (existingCanvas) {
-      return;
-    }
+  if (!container) return () => {};
+
+  const existingCanvas = container.querySelector('canvas');
+  if (existingCanvas) return () => {};
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
@@ -20,25 +19,28 @@ export function initLoginAnimation() {
   camera.position.z = 800;
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
+  const loader = new THREE.TextureLoader();
+
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
 
-  const loader = new THREE.TextureLoader();
-  loader.load(textureSrc, (texture) => {
+  loader.load(textureSrc, (texture: THREE.Texture) => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
     canvas.width = texture.image.width;
     canvas.height = texture.image.height;
     ctx.drawImage(texture.image, 0, 0);
 
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
 
-    const positions = [];
-    const targetPositions = [];
-    let scatterPositions = [];
-    const colors = [];
-    const scales = [];
-    const randomOffsets = [];
+    const positions: number[] = [];
+    const targetPositions: number[] = [];
+    let scatterPositions: number[] = [];
+    const colors: number[] = [];
+    const scales: number[] = [];
+    const randomOffsets: number[] = [];
     const gap = 3;
 
     for (let y = 0; y < canvas.height; y += gap) {
@@ -51,54 +53,53 @@ export function initLoginAnimation() {
 
         if (a > 0) {
           targetPositions.push(
-            x - canvas.width / 2, 
-            -(y - canvas.height / 2), 
-            0 
+            x - canvas.width / 2,
+            -(y - canvas.height / 2),
+            0
           );
 
           positions.push(
-            (Math.random() - 0.5) * window.innerWidth, 
-            (Math.random() - 0.5) * window.innerHeight, 
-            Math.random() * 400 - 200 
+            (Math.random() - 0.5) * window.innerWidth,
+            (Math.random() - 0.5) * window.innerHeight,
+            Math.random() * 400 - 200
           );
 
-          colors.push(r / 255, g / 255, b / 255); 
+          colors.push(r / 255, g / 255, b / 255);
 
-          scales.push(Math.random() * 0.5 + 0.5); 
-          randomOffsets.push(Math.random() * 0.5 - 0.25); 
+          scales.push(Math.random() * 0.5 + 0.5);
+          randomOffsets.push(Math.random() * 0.5 - 0.25);
         }
       }
     }
 
     const geometry = new THREE.BufferGeometry();
+    const material = new THREE.PointsMaterial({
+      size: 4,
+      vertexColors: true,
+    });
+    const particles = new THREE.Points(geometry, material);
+    let assembling = true;
+    let scattering = false;
+
     geometry.setAttribute(
       'position',
       new THREE.Float32BufferAttribute(positions, 3)
     );
     geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
-
-    const material = new THREE.PointsMaterial({
-      size: 4,
-      vertexColors: true,
-    });
-
-    const particles = new THREE.Points(geometry, material);
     scene.add(particles);
 
-    let assembling = true; 
-    let scattering = false; 
-    function generateScatterPositions() {
-      scatterPositions.length = 0; 
+    function generateScatterPositions(): void {
+      scatterPositions.length = 0;
       for (let i = 0; i < targetPositions.length; i += 3) {
         scatterPositions.push(
-          (Math.random() - 0.5) * window.innerWidth, 
-          (Math.random() - 0.5) * window.innerHeight, 
-          (Math.random() - 0.5) * 400 
+          (Math.random() - 0.5) * window.innerWidth,
+          (Math.random() - 0.5) * window.innerHeight,
+          (Math.random() - 0.5) * 400
         );
       }
     }
 
-    function scatterParticles() {
+    function scatterParticles(): void {
       const currentPositions = particles.geometry.attributes.position.array;
 
       for (let i = 0; i < currentPositions.length; i += 3) {
@@ -106,14 +107,14 @@ export function initLoginAnimation() {
         const scatterY = scatterPositions[i + 1];
         const scatterZ = scatterPositions[i + 2];
 
-        currentPositions[i] += (scatterX - currentPositions[i]) * 0.05;
-        currentPositions[i + 1] += (scatterY - currentPositions[i + 1]) * 0.05;
-        currentPositions[i + 2] += (scatterZ - currentPositions[i + 2]) * 0.05;
+        currentPositions[i] += (scatterX - currentPositions[i]) * 0.01;
+        currentPositions[i + 1] += (scatterY - currentPositions[i + 1]) * 0.01;
+        currentPositions[i + 2] += (scatterZ - currentPositions[i + 2]) * 0.01;
       }
       particles.geometry.attributes.position.needsUpdate = true;
     }
 
-    function animate() {
+    function animate(): void {
       const currentPositions = particles.geometry.attributes.position.array;
 
       if (assembling) {
@@ -137,14 +138,14 @@ export function initLoginAnimation() {
         const y = currentPositions[i + 1];
         const z = currentPositions[i + 2];
 
-        const scaleFactor = scales[i / 3] + Math.sin(time + i * 0.3) * 0.1; 
+        const scaleFactor = scales[i / 3] + Math.sin(time + i * 0.3) * 0.1;
         currentPositions[i] =
-          x + Math.sin(time + i) * randomOffsets[i / 3] * 0.3; 
+          x + Math.sin(time + i) * randomOffsets[i / 3] * 0.3;
         currentPositions[i + 1] =
-          y + Math.cos(time + i) * randomOffsets[i / 3] * 0.3; 
-        currentPositions[i + 2] = z + Math.sin(time + i * 0.9) * 1; 
+          y + Math.cos(time + i) * randomOffsets[i / 3] * 0.3;
+        currentPositions[i + 2] = z + Math.sin(time + i * 0.9) * 1;
 
-        particles.material.size = 5 * scaleFactor; 
+        particles.material.size = 5 * scaleFactor;
       }
 
       particles.geometry.attributes.position.needsUpdate = true;
@@ -156,7 +157,7 @@ export function initLoginAnimation() {
       if (!scattering) {
         scattering = true;
         assembling = false;
-        generateScatterPositions(); 
+        generateScatterPositions();
       } else {
         scattering = false;
         assembling = true;
@@ -166,9 +167,33 @@ export function initLoginAnimation() {
     animate();
   });
 
-  window.addEventListener('resize', () => {
+  const resizeHandler = () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-};
+  };
+
+  window.addEventListener('resize', resizeHandler);
+
+  const cleanup = () => {
+    window.removeEventListener('resize', resizeHandler);
+
+    scene.traverse((object: THREE.Object3D) => {
+      if (object instanceof THREE.Mesh) {
+        if (object.material) {
+          if (object.material.map) {
+            object.material.map.dispose();
+          }
+          object.material.dispose();
+        }
+      }
+      if (object.geometry) {
+        object.geometry.dispose();
+      }
+    });
+
+    renderer.dispose();
+  };
+
+  return cleanup;
+}

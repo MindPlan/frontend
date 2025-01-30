@@ -1,6 +1,7 @@
 @use '~shared/styles/colors.scss' as colors;
 
-* { // todo add to base styles
+* {
+  // todo add to base styles
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -13,6 +14,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   position: relative;
   height: 100vh;
   overflow: hidden;
@@ -24,6 +26,10 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 160px;
+
+  @media screen and (max-height: 680px) {
+    margin-bottom: 40px;
+  }
 }
 
 .logo {
@@ -47,6 +53,10 @@
   color: colors.$COLOR_GRAY_100;
   margin: 0;
   margin-bottom: 16px;
+
+  @media screen and (max-height: 768px) {
+    font-size: 72px;
+  }
 }
 
 .description {
@@ -56,6 +66,11 @@
   color: colors.$COLOR_GRAY_30;
   margin: 0;
   margin-bottom: 56px;
+
+  @media screen and (max-height: 768px) {
+    font-size: 32px;
+    margin-bottom: 36px;
+  }
 }
 
 .continueBtnContainer {

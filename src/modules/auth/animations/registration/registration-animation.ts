@@ -1,14 +1,14 @@
 import * as THREE from 'three';
 import textureSrc from '~assets/animation-images/signup-animation.png';
 
-export function initRegistrationAnimation() {
-  const container = document.getElementById('registrationAnimationContainer');
-  if (!container) return;
+export function initRegistrationAnimation(): () => void {
+  const container = document.getElementById('registration-animation-container');
+
+  if (!container) return () => {};
 
   const existingCanvas = container.querySelector('canvas');
-  if (existingCanvas) {
-    return;
-  }
+
+  if (existingCanvas) return () => {};
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
@@ -24,7 +24,7 @@ export function initRegistrationAnimation() {
   container.appendChild(renderer.domElement);
 
   const loader = new THREE.TextureLoader();
-  loader.load(textureSrc, (texture) => {
+  loader.load(textureSrc, (texture: THREE.Texture) => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = texture.image.width;
@@ -33,22 +33,22 @@ export function initRegistrationAnimation() {
 
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
 
-    const positions = [];
-    const targetPositions = [];
-    const colors = [];
-    const scales = [];
-    const randomOffsets = [];
+    const positions: number[] = [];
+    const targetPositions: number[] = [];
+    const colors: number[] = [];
+    const scales: number[] = [];
+    const randomOffsets: number[] = [];
     const gap = 5;
 
     for (let y = 0; y < canvas.height; y += gap) {
       for (let x = 0; x < canvas.width; x += gap) {
         const index = (y * canvas.width + x) * 4;
-        const r = imageData[index];
-        const g = imageData[index + 1];
-        const b = imageData[index + 2];
-        const a = imageData[index + 3];
+        const red = imageData[index];
+        const green = imageData[index + 1];
+        const blue = imageData[index + 2];
+        const alpha = imageData[index + 3];
 
-        if (a > 0) {
+        if (alpha > 0) {
           targetPositions.push(
             x - canvas.width / 2,
             -(y - canvas.height / 2),
@@ -60,7 +60,7 @@ export function initRegistrationAnimation() {
             Math.random() * 400 - 200
           );
 
-          colors.push(r / 255, g / 255, b / 255);
+          colors.push(red / 255, green / 255, blue / 255);
           scales.push(Math.random() * 0.5 + 0.5);
           randomOffsets.push(Math.random() * 0.5 - 0.25);
         }
@@ -80,7 +80,7 @@ export function initRegistrationAnimation() {
 
     let assembling = true;
 
-    function animate() {
+    function animate(): void {
       const currentPositions = particles.geometry.attributes.position.array;
       for (let i = 0; i < currentPositions.length; i += 3) {
         const targetX = targetPositions[i];
@@ -124,7 +124,7 @@ export function initRegistrationAnimation() {
 
     animate();
 
-    function onResize() {
+    function onResize(): void {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);

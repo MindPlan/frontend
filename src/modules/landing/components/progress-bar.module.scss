@@ -7,6 +7,11 @@
   background-color: colors.$COLOR_GRAY_10;
   border-radius: 6px;
   margin-bottom: 56px;
+
+  @media screen and (max-height: 768px) {
+    width: 400px;
+    margin-bottom: 36px;
+  }
 }
 
 .progressBar {

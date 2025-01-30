@@ -2,7 +2,11 @@ import * as THREE from 'three';
 import textureSrc from '~assets/animation-images/landing-animation.png';
 
 window.addEventListener('load', () => {
-  const container = document.getElementById('landingAnimationContainer');
+  const container = document.getElementById('landing-animation-container');
+
+  if (!container) {
+    return;
+  }
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0xffffff);
@@ -21,14 +25,13 @@ window.addEventListener('load', () => {
   light.position.set(2, 2, 5);
   scene.add(light);
 
-  const vertexShader =`
+  const vertexShader = `
     varying vec2 vUv;
 
     void main() {
       vUv = uv; // Передаємо UV-координати до фрагментного шейдера
       gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
     }`;
-  
 
   const fragmentShader = `
   varying vec2 vUv;

@@ -11,7 +11,7 @@ const RegistrationPage = () => {
   return (
     <div className={styles.container}>
       RegistrationPage
-      <div id='registrationAnimationContainer'></div>
+      <div id='registration-animation-container'></div>
     </div>
   );
 };

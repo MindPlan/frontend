@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { PublicRoutes } from './modules/auth/components/public-routes.component';
 import { PrivateRoutes } from './modules/auth/components/private-routes.components';
 import useAuthStore from './store/auth.store';
