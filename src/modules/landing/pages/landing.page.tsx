@@ -72,6 +72,7 @@ const LandingPage: React.FC = () => {
           transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
           <h1 className={styles.title}>{currentInfo.title}</h1>
+
           <p className={styles.description}>{currentInfo.description}</p>
         </motion.div>
 

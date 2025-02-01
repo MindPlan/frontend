@@ -32,7 +32,7 @@ export function initLoginAnimation(): () => void {
   loader.load(textureSrc, (texture: THREE.Texture) => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    
+
     if (!ctx) {
       return;
     }
@@ -186,17 +186,16 @@ export function initLoginAnimation(): () => void {
     window.removeEventListener('resize', resizeHandler);
 
     scene.traverse((object: THREE.Object3D) => {
-      if (object instanceof THREE.Mesh) {
-        if (object.material) {
-          if (object.material.map) {
-            object.material.map.dispose();
-          }
-          object.material.dispose();
-        }
+      if (!(object instanceof THREE.Mesh)) {
+        return;
       }
-      if (object.geometry) {
-        object.geometry.dispose();
+
+      if (object.material) {
+        object.material.map?.dispose();
+        object.material.dispose();
       }
+
+      object.geometry?.dispose();
     });
 
     renderer.dispose();

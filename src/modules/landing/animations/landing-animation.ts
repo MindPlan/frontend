@@ -3,6 +3,7 @@ import textureSrc from '~assets/animation-images/landing-animation.png';
 
 window.addEventListener('load', () => {
   const container = document.getElementById('landing-animation-container');
+
   if (!container) {
     return;
   }

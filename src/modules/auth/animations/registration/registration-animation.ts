@@ -4,11 +4,15 @@ import textureSrc from '~assets/animation-images/signup-animation.png';
 export function initRegistrationAnimation(): () => void {
   const container = document.getElementById('registration-animation-container');
 
-  if (!container) return () => {};
+  if (!container) {
+    return () => {};
+  }
 
   const existingCanvas = container.querySelector('canvas');
 
-  if (existingCanvas) return () => {};
+  if (existingCanvas) {
+    return () => {};
+  }
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
