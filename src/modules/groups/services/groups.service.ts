@@ -1,9 +1,9 @@
 import { EnhancedWithAuthHttpService } from '~shared/services/http-auth.service.ts';
 import { httpFactoryService } from '~shared/services/http-factory.service.ts';
 
-import { Group } from '../types/groups/group.type.ts';
-import { CreateGroupType } from '../types/groups/create-group.type.ts';
-import { UpdateGroupType } from '../types/groups/update-group.type.ts';
+import { Group } from '../types/group.type.ts';
+import { CreateGroupType } from '../types/create-group.type.ts';
+import { UpdateGroupType } from '../types/update-group.type.ts';
 
 class GroupsService {
   constructor(private enhancedWithAuthHttpService: EnhancedWithAuthHttpService) {

@@ -1,0 +1,14 @@
+import { StatusEnum } from './status.enum.ts';
+import { PriorityEnum } from './priority.enum.ts';
+
+export type Task = {
+  id: number;
+  owner: number;
+  title: string;
+  description: string;
+  priority: PriorityEnum;
+  status: StatusEnum;
+  group: number[];
+  'start_date': Date;
+  'end_date': Date;
+}
