@@ -14,14 +14,14 @@ class AuthService {
     this.httpService = httpService;
   }
   
-  public async sendGoogleJWT(token: GoogleTokenType, action: 'registration' | 'login'): Promise<AuthGoogleResponse> {
+  public async sendGoogleJWT(token: GoogleTokenType): Promise<AuthGoogleResponse> {
     const config: IHttpConfig = {
       headers: {
         'Authorization': `Bearer ${token}`,
       }
     }
     
-    return this.httpService.get<AuthGoogleResponse>(`/auth/${action}-google/`, config);
+    return this.httpService.get<AuthGoogleResponse>(`/auth/google/`, config);
   }
   
   public async registration(data: RegistrationRequest): Promise<void> {
@@ -33,13 +33,7 @@ class AuthService {
   }
   
   public async verifyEmail(jwt: string): Promise<void> {
-    const config: IHttpConfig = {
-      headers: {
-        'Authorization': `Bearer ${jwt}`,
-      }
-    }
-    
-    return this.httpService.get<void>(`/auth/verify-email/${jwt}`, config);
+    return this.httpService.get<void>(`/auth/verify-email/${jwt}/`);
   }
   
   public async getUserInfo(accessToken: string): Promise<UserInfoResponse> {
@@ -52,6 +46,24 @@ class AuthService {
     return this.httpService.get<UserInfoResponse>(`/auth/me/`, config);
   }
   
+  // Send verification mail to email of a user
+  public async initResettingPassword(accessToken: string): Promise<void> {
+    const config: IHttpConfig = {
+      headers: { Authorization: `Bearer ${accessToken}` }
+    }
+    
+    return this.httpService.post<void, void>('/auth/password-reset/', undefined, config);
+  }
+  
+  // User clicks a links, and we tell to the backend that the user has access to its email
+  public async confirmResettingPassword(jwt: string): Promise<void> {
+    return this.httpService.post<void, void>(`/auth/password-reset-confirm/${jwt}`, undefined);
+  }
+  
+  // TODO: implement a method for changing a password
+  // public async changePassword(): Promise<void> {}
+  
+  // TODO: change HTTP method to GET or send refreshToken in the request body - discuss it with Oleksandr Python Dev
   public async logout(refreshToken: string): Promise<void> {
     const config: IHttpConfig = {
       headers: {'Authorization' : `Bearer ${refreshToken}`},
