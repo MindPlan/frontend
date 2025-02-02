@@ -55,7 +55,7 @@ class AuthService {
     return this.httpService.post<void, void>('/auth/password-reset/', undefined, config);
   }
   
-  // User clicks a links, and we tell to the backend that the user has access to its email
+  // User clicks a link, and we tell to the backend that the user has access to its email
   public async confirmResettingPassword(jwt: string): Promise<void> {
     return this.httpService.post<void, void>(`/auth/password-reset-confirm/${jwt}`, undefined);
   }
