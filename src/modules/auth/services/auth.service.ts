@@ -2,12 +2,12 @@ import { HttpService } from '~shared/services/http.service';
 import { IHttpConfig } from '~shared/services/types';
 import { httpFactoryService } from '~shared/services/http-factory.service';
 
-import { GoogleTokenType } from '../types/google-token.type';
-import { AuthGoogleResponse } from '../types/auth-google.response';
-import { RegistrationRequest } from '../types/registration-request.type';
-import { LoginRequest } from '../types/login-request.type';
-import { LoginResponse } from '../types/login-response.type';
-import { UserInfoResponse } from '../types/user-info.response';
+import { GoogleTokenType } from '../types/auth/google-token.type.ts';
+import { AuthGoogleResponse } from '../types/auth/auth-google.response.ts';
+import { RegistrationRequest } from '../types/auth/registration-request.type.ts';
+import { LoginRequest } from '../types/auth/login-request.type.ts';
+import { LoginResponse } from '../types/auth/login-response.type.ts';
+import { UserInfoResponse } from '../types/auth/user-info.response.ts';
 
 class AuthService {
   constructor(private readonly httpService: HttpService) {

@@ -6,6 +6,10 @@ class GroupsService {
   constructor(private enhancedWithAuthHttpService: EnhancedWithAuthHttpService) {
     this.enhancedWithAuthHttpService = enhancedWithAuthHttpService;
   }
+  
+  public async getAll(): Promise<void> {
+  
+  }
 }
 
 export const groupsService = new GroupsService(httpFactoryService.createAuthHttpService());
