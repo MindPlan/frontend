@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { landingPageInfos } from '~modules/auth/utils/landing.page.data';
+import { useNavigate } from 'react-router-dom';
 import '../animations/landing-animation';
 import Logo from '~assets/svg/logo.svg';
 import ProgressBar from '../components/progress.bar';
@@ -8,6 +9,8 @@ import styles from './landing-page.module.scss';
 import './../animations/landing-animation.scss';
 
 const LandingPage: React.FC = () => {
+  const navigate = useNavigate();
+
   const savedIndex = localStorage.getItem('landingPageIndex');
   const savedProgress = localStorage.getItem('landingPageProgress');
 
@@ -41,6 +44,8 @@ const LandingPage: React.FC = () => {
     if (index < landingPageInfos.length - 1) {
       setIndex(index + 1);
       setProgress(progress + 1);
+    } else {
+      goToRegister();
     }
   };
 
@@ -51,6 +56,10 @@ const LandingPage: React.FC = () => {
     localStorage.removeItem('landingPageProgress');
   };
 
+    const goToRegister = () => {
+      navigate('/registration');
+    };
+
   const currentInfo = landingPageInfos[index];
 
   return (
@@ -60,7 +69,7 @@ const LandingPage: React.FC = () => {
           <Logo />
         </div>
 
-        <div>Button</div>
+        <div className={styles.skipButton} onClick={goToRegister}>Button</div>
       </header>
 
       <section className={styles.textContainer}>

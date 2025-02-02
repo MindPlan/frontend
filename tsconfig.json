@@ -30,6 +30,9 @@
             ],
             "~auth/*": [
                 "src/modules/auth/*"
+            ],
+            "~fonts/*": [
+                "src/assets/fonts/*"
             ]
         }
     }

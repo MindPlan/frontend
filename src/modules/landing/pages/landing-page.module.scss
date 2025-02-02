@@ -1,11 +1,5 @@
 @use '~shared/styles/colors.scss' as colors;
-
-* {
-  // todo add to base styles
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@use '~shared/styles/typography.scss' as typography;
 
 .container {
   padding-top: 40px;
@@ -50,9 +44,12 @@
 }
 
 .title {
-  font-size: 120px; // todo change to a variable
-  font-weight: 500; // todo change to a variable
-  line-height: 100%;
+  @include typography.typography(
+    typography.$FONT_SIZE_TITLE_1,
+    typography.$FONT_WEIGHT_MEDIUM,
+    typography.$LINE_HEIGHT_MIDDLE,
+    0
+  );
   color: colors.$COLOR_GRAY_100;
   margin: 0;
   margin-bottom: 16px;
@@ -63,10 +60,14 @@
 }
 
 .description {
-  font-size: 40px; // todo change to a variable
-  line-height: 50px; // todo change to a variable
-  font-weight: 400; // todo change to a variable
+  @include typography.typography(
+    typography.$FONT_SIZE_TITLE_4,
+    typography.$FONT_WEIGHT_BOOK,
+    typography.$LINE_HEIGHT_SMALL,
+    0
+  );
   color: colors.$COLOR_GRAY_30;
+
   margin: 0;
   margin-bottom: 56px;
 
@@ -78,4 +79,14 @@
 
 .continueBtnContainer {
   margin-bottom: 39px;
+}
+
+.skipButton {
+  @include typography.typography(
+    typography.$FONT_SIZE_BODY,
+    typography.$FONT_WEIGHT_BOOK,
+    typography.$LINE_HEIGHT_TINY,
+    0
+  );
+  color: colors.$COLOR_GRAY_30;
 }
