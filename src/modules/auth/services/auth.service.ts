@@ -29,17 +29,17 @@ class AuthService {
   }
   
   public async login(data: LoginRequest): Promise<LoginResponse> {
-    return this.httpService.post<LoginResponse, LoginRequest>('/auth/login/', data);
+    return this.httpService.post<LoginResponse, LoginRequest>('/auth/sign-in/', data);
   }
   
-  public async confirmEmail(jwt: string): Promise<void> {
+  public async verifyEmail(jwt: string): Promise<void> {
     const config: IHttpConfig = {
       headers: {
         'Authorization': `Bearer ${jwt}`,
       }
     }
     
-    return this.httpService.get<void>(`/auth/confirm-email/`, config);
+    return this.httpService.get<void>(`/auth/verify-email/${jwt}`, config);
   }
   
   public async getUserInfo(accessToken: string): Promise<UserInfoResponse> {
@@ -50,6 +50,14 @@ class AuthService {
     }
     
     return this.httpService.get<UserInfoResponse>(`/auth/me/`, config);
+  }
+  
+  public async logout(refreshToken: string): Promise<void> {
+    const config: IHttpConfig = {
+      headers: {'Authorization' : `Bearer ${refreshToken}`},
+    }
+    
+    return this.httpService.get<void>('/auth/token/logout/', config);
   }
 }
 
