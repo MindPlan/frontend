@@ -1,0 +1,21 @@
+.button {
+  padding: 16px 32px;
+
+  &:hover {}
+
+  &:active {}
+
+  &:disabled {
+    pointer-events: none;
+  }
+
+  &--secondary {
+    &:hover {}
+
+    &:active {}
+
+    &:disabled {
+      pointer-events: none;
+    }
+  }
+}
