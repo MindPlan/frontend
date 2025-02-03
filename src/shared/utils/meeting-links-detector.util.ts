@@ -13,8 +13,15 @@ class MeetingLinksDetector {
   public detect(link: string): boolean {
     const regexGoogleMeetings = /^(meet\.google\.com\/[a-z0-9-]+|g\.co\/meet\/[a-z0-9]+|apps\.google\.com\/meet\/?)/i;
     const regexZoomMeetings = /^(zoom\.us\/j\/\d+|us04web\.zoom\.us\/j\/\d+|us05web\.zoom\.us\/j\/\d+)/i;
+    const regexMSTeamsMeetings = /^(teams\.microsoft\.com\/l\/meetup-join\/[a-zA-Z0-9_-]+|teams\.live\.com\/meet\/[a-zA-Z0-9_-]+)/i;
+    const regexSkypeMeetings = /^join\.skype\.com\/[a-zA-Z0-9]+/i;
     
-    return regexGoogleMeetings.test(link) || regexZoomMeetings.test(link);
+    return (
+      regexGoogleMeetings.test(link)
+      || regexZoomMeetings.test(link)
+      || regexMSTeamsMeetings.test(link)
+      || regexSkypeMeetings.test(link)
+    );
   }
 }
 
