@@ -14,16 +14,16 @@
     display: block;
     margin: 0;
     padding: 0;
-    width: 90% !important;
-    height: 750px !important;
+    width: 200% !important;
+    height: 1500px !important;
     overflow: hidden;
-    bottom: 0;
-    transform: translateY(27%);
+    top: 26%;
+
 
     @media screen and (max-height: 768px) {
-      height: 475px !important;
-      width: 852px !important;
-      transform: translateY(28%);
+      height: 780px !important;
+      width: 190% !important;
+      top: 34%;
     }
   }
 }

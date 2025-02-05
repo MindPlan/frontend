@@ -45,7 +45,7 @@ const LandingPage: React.FC = () => {
       setIndex(index + 1);
       setProgress(progress + 1);
     } else {
-      goToRegister();
+      goToLogin();
     }
   };
 
@@ -56,9 +56,13 @@ const LandingPage: React.FC = () => {
     localStorage.removeItem('landingPageProgress');
   };
 
-    const goToRegister = () => {
-      navigate('/registration');
-    };
+  const goToRegister = () => {
+    navigate('/registration');
+  };
+
+  const goToLogin = () => {
+    navigate('/login');
+  };
 
   const currentInfo = landingPageInfos[index];
 
@@ -69,7 +73,9 @@ const LandingPage: React.FC = () => {
           <Logo />
         </div>
 
-        <div className={styles.skipButton} onClick={goToRegister}>Button</div>
+        <div className={styles.skipButton} onClick={goToRegister}>
+          Button
+        </div>
       </header>
 
       <section className={styles.textContainer}>
@@ -80,9 +86,11 @@ const LandingPage: React.FC = () => {
           exit={{ x: '-100%', opacity: 0 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
-          <h1 className={styles.title}>{currentInfo.title}</h1>
+          <div className={styles.text}>
+            <h1 className={styles.title}>{currentInfo.title}</h1>
 
-          <p className={styles.description}>{currentInfo.description}</p>
+            <p className={`${styles.description} ${index === 0 || index === 2 ? styles.wide : ''}`}>{currentInfo.description}</p>
+          </div>
         </motion.div>
 
         <ProgressBar percentage={progress} />

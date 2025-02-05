@@ -27,8 +27,8 @@
 }
 
 .logo {
-  width: 59px;
-  height: 59px;
+  width: 58px;
+  height: 58px;
   border-radius: 13px;
   background-color: colors.$COLOR_GRAY_100;
   cursor: pointer;
@@ -41,6 +41,13 @@
 
 .textContainer {
   text-align: center;
+}
+
+.text {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
@@ -67,9 +74,18 @@
     0
   );
   color: colors.$COLOR_GRAY_30;
-
+  width: 100%;
+  max-width: 1200px;
   margin: 0;
   margin-bottom: 56px;
+
+    &.wide {
+    max-width: 1270px;
+
+    @media screen and (max-width: 1300px) {
+      max-width: 1080px;
+    }
+  }
 
   @media screen and (max-height: 768px) {
     font-size: 32px;

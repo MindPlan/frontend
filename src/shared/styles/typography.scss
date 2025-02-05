@@ -1,22 +1,22 @@
 // Font connecting
 @font-face {
   font-family: 'PP Neue Montreal';
-  src: url('~fonts/PPNeueMontreal-Medium.otf') format('woff');
+  src: url('~fonts/PPNeueMontreal-Medium.otf') format('otf');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'PP Neue Montreal';
-  src: url('~fonts/NeueMontreal-Regular.otf') format('woff');
-  font-weight: 400;
+  src: url('~fonts/NeueMontreal-Regular.otf') format('otf');
+  font-weight: 450;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'PP Neue Montreal';
-  src: url('~fonts/PPNeueMontreal-Book.otf') format('woff');
-  font-weight: 350;
+  src: url('~fonts/PPNeueMontreal-Book.otf') format('otf');
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -36,8 +36,8 @@ $FONT_SIZE_TITLE_2: 72px;
 $FONT_SIZE_TITLE_1: 120px;
 
 // Font weights
-$FONT_WEIGHT_BOOK: 350;
-$FONT_WEIGHT_REGULAR: 400;
+$FONT_WEIGHT_BOOK: 400;
+$FONT_WEIGHT_REGULAR: 450;
 $FONT_WEIGHT_MEDIUM: 500;
 
 // Line heights
@@ -49,6 +49,7 @@ $LINE_HEIGHT_GIANT: 130%;
 $LINE_HEIGHT_PRIMARY: 140%;
 
 // Letter spacing
+$LETTER_SPACING_PRIMARY: 0;
 $LETTER_SPACING_SECONDARY: -0.5px;
 
 // typography mixins
@@ -56,7 +57,7 @@ $LETTER_SPACING_SECONDARY: -0.5px;
   $size,
   $weight,
   $lineHeight,
-  $letterSpacing
+  $letterSpacing: 0
 ) {
   font-family: $FONT_FAMILY;
   font-size: $size;
