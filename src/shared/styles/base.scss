@@ -1,0 +1,15 @@
+@use '~shared/styles/colors.scss' as colors;
+@use '~shared/styles/typography.scss' as typography;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: typography.$FONT_FAMILY;
+  color: colors.$COLOR_GRAY_30;
+  font-size: typography.$FONT_SIZE_PRIMARY;
+  font-weight: typography.$FONT_WEIGHT_MEDIUM;
+}
