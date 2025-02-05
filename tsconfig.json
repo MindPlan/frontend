@@ -6,6 +6,7 @@
         "moduleResolution": "bundler",
         "target": "ES2020",
         "allowSyntheticDefaultImports": true,
+        "allowImportingTsExtensions": true,
         "paths": {
             "~assets/*": [
                 "src/assets/*"
