@@ -4,13 +4,13 @@ import classNames from 'classnames';
 
 interface Props {
   belongsTo?: string;
-  text: string;
+  children: string;
   callback: () => void;
 }
 
 export const Button: React.FC<Props> = ({
   belongsTo,
-  text,
+  children,
   callback,
 }) => {
   const classes = classNames(
@@ -23,7 +23,7 @@ export const Button: React.FC<Props> = ({
       className={classes}
       onClick={callback}
     >
-      {text}
+      {children}
     </button>
   );
 }

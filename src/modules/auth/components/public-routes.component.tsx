@@ -5,6 +5,7 @@ import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import LandingPage from '~/modules/landing/pages/landing.page';
 import RegistrationPage from '~/modules/auth/pages/registration/registration.page';
 import LoginPage from '~/modules/auth/pages/login/login.page';
+import {Button} from "../../../shared/components/button";
 
 // This page is for python developers to test extract info from Google jwt. This one will be deleted soon.
 const GooglePage = () => {
@@ -36,6 +37,8 @@ const GooglePage = () => {
           Copy token!
         </button>
       )}
+      
+      <Button callback={() => {}}>Click me!</Button>
     </>
   );
 };

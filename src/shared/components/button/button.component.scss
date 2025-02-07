@@ -1,1 +1,36 @@
-.button {}
+@use '../../styles/colors.scss' as colors;
+@use '../../styles/typography.scss' as typography;
+
+.button {
+  padding: 16px 32px;
+
+  background-color: colors.$COLOR_BLUE_MEDIUM;
+  border: none;
+  border-radius: 4px;
+
+  color: colors.$COLOR_GRAY_0;
+  @include typography.typography(
+    typography.$FONT_SIZE_PRIMARY,
+    typography.$FONT_WEIGHT_MEDIUM,
+    typography.$LINE_HEIGHT_MIDDLE,
+    0,
+  );
+
+  &:hover {}
+
+  &:active {}
+
+  &:disabled {
+    pointer-events: none;
+  }
+
+  .button--secondary {
+    &:hover {}
+
+    &:active {}
+
+    &:disabled {
+      pointer-events: none;
+    }
+  }
+}
