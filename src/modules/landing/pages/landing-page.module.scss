@@ -1,0 +1,108 @@
+@use '~shared/styles/colors.scss' as colors;
+@use '~shared/styles/typography.scss' as typography;
+
+.container {
+  padding-top: 40px;
+  padding-left: 28px;
+  padding-right: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 160px;
+
+  @media screen and (max-height: 680px) {
+    margin-bottom: 40px;
+  }
+}
+
+.logo {
+  width: 58px;
+  height: 58px;
+  border-radius: 13px;
+  background-color: colors.$COLOR_GRAY_100;
+  cursor: pointer;
+  transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1); // todo create a variable
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.textContainer {
+  text-align: center;
+}
+
+.text {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  @include typography.typography(
+    typography.$FONT_SIZE_TITLE_1,
+    typography.$FONT_WEIGHT_MEDIUM,
+    typography.$LINE_HEIGHT_MIDDLE,
+    0
+  );
+  color: colors.$COLOR_GRAY_100;
+  margin: 0;
+  margin-bottom: 16px;
+
+  @media screen and (max-height: 768px) {
+    font-size: 72px;
+  }
+}
+
+.description {
+  @include typography.typography(
+    typography.$FONT_SIZE_TITLE_4,
+    typography.$FONT_WEIGHT_BOOK,
+    typography.$LINE_HEIGHT_SMALL,
+    0
+  );
+  color: colors.$COLOR_GRAY_30;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0;
+  margin-bottom: 56px;
+
+    &.wide {
+    max-width: 1270px;
+
+    @media screen and (max-width: 1300px) {
+      max-width: 1080px;
+    }
+  }
+
+  @media screen and (max-height: 768px) {
+    font-size: 32px;
+    margin-bottom: 36px;
+  }
+}
+
+.continueBtnContainer {
+  margin-bottom: 39px;
+}
+
+.skipButton {
+  @include typography.typography(
+    typography.$FONT_SIZE_BODY,
+    typography.$FONT_WEIGHT_BOOK,
+    typography.$LINE_HEIGHT_TINY,
+    0
+  );
+  color: colors.$COLOR_GRAY_30;
+}
