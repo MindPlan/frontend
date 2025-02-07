@@ -1,4 +1,3 @@
-import { StatusEnum } from './status.enum.ts';
 import { PriorityEnum } from './priority.enum.ts';
 
 export type Task = {
@@ -7,8 +6,8 @@ export type Task = {
   title: string;
   description: string;
   priority: PriorityEnum;
-  status: StatusEnum;
-  group: number[];
+  group: number;
+  tag: number[];
   'start_date': Date;
   'end_date': Date;
 }
