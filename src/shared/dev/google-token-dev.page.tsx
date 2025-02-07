@@ -1,28 +1,22 @@
 import React, { useState } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
-import { RedirectPage } from '../pages/redirect.page';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
-import LandingPage from '~/modules/landing/pages/landing.page';
-import RegistrationPage from '~/modules/auth/pages/registration/registration.page';
-import LoginPage from '~/modules/auth/pages/login/login.page';
-import {Button} from "../../../shared/components/button";
 
 // This page is for python developers to test extract info from Google jwt. This one will be deleted soon.
 const GooglePage = () => {
   const [token, setToken] = useState<string | null>(null);
-
+  
   return (
     <>
       <h1>Your token:</h1>
       <p>
         {token ? token : 'You need to sign in via google to see your token bro'}
       </p>
-
+      
       <GoogleOAuthProvider clientId={import.meta.env.VITE_CLIENT_ID}>
         <GoogleLogin
           onSuccess={async ({ credential }) => {
             // const result = await authService.sendGoogleJWT(credential, 'registration');
-
+            
             setToken(credential);
           }}
           onError={() => {
@@ -31,25 +25,14 @@ const GooglePage = () => {
           size='large'
         />
       </GoogleOAuthProvider>
-
+      
       {token && (
         <button onClick={() => window.navigator.clipboard.writeText(token)}>
           Copy token!
         </button>
       )}
-      
-      <Button callback={() => {}}>Click me!</Button>
     </>
   );
 };
 
-export const PublicRoutes = () => (
-  <Routes>
-    <Route path='/' element={<LandingPage />} />
-    <Route path='/registration' element={<RegistrationPage />} /> 
-    <Route path='/login' element={<LoginPage />} /> 
-    <Route path='/confirmation' element={<>Confirmation</>} />
-    <Route path='/dev/get-google-token' element={<GooglePage />} />
-    <Route path='*' element={<RedirectPage />} />
-  </Routes>
-);
+export default GooglePage;
