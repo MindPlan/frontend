@@ -3,6 +3,8 @@ import textureSrc from '~assets/animation-images/signup-animation.png';
 
 export function initRegistrationAnimation(): () => void {
   const container = document.getElementById('registration-animation-container');
+  const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+  const alphaThreshold = isFirefox ? 8 : 0;
 
   if (!container) {
     return () => {};
@@ -56,7 +58,7 @@ export function initRegistrationAnimation(): () => void {
         const targetY = -(y - canvas.height / 2);
         const targetZ = 0;
 
-        if (alpha > 0) {
+        if (alpha > alphaThreshold) {
           targetPositions.push(targetX, targetY, targetZ);
           positions.push(
             (Math.random() - 0.5) * window.innerWidth,
