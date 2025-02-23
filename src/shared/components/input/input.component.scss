@@ -1,6 +1,7 @@
 .input {
   width: 100%;
   height: 48px;
+  padding-left: 48px;
 
   border-radius: 8px;
 
@@ -14,4 +15,24 @@
   &:hover {}
   &:focus {}
   &:disabled {}
+
+  &-wrapper {
+    display: flex;
+    position: relative;
+    align-items: center;
+  }
+}
+
+.input__icon {
+  position: absolute;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  width: 24px;
+  margin-left: 16px;
+
+  &--right {
+    margin-left: unset;
+    right: 16px;
+  }
 }

@@ -1,4 +1,4 @@
-import React, { HTMLInputTypeAttribute, SVGProps } from 'react';
+import React, { HTMLInputTypeAttribute } from 'react';
 import {Control, Controller, FieldValues, Path, PathValue} from 'react-hook-form';
 import './input.component.scss';
 import classNames from "classnames";
@@ -10,8 +10,8 @@ interface Props<T extends FieldValues> {
   type?: HTMLInputTypeAttribute;
   placeholder?: string;
   label?: string;
-  RightIcon?: React.FC<SVGProps<SVGSVGElement>>;
-  LeftIcon?: React.FC<SVGProps<SVGSVGElement>>;
+  RightIcon?: string;
+  LeftIcon?: string;
   defaultValue?: PathValue<T, Path<T>>;
   error?: string;
   disabled?: boolean;
@@ -49,11 +49,11 @@ const Input = <T extends FieldValues>({
         control={control}
         defaultValue={defaultValue}
         render={({field}) => (
-          <>
+          <div className="input-wrapper">
             {LeftIcon && (
-              <span className="icon">
-                <LeftIcon className="icon__svg"/>
-              </span>
+              <div className="input__icon">
+                <LeftIcon />
+              </div>
             )}
             
             <input
@@ -66,14 +66,16 @@ const Input = <T extends FieldValues>({
                 'input',
                 error.length && 'input--error',
               )}
-            />
+            >
+            
+            </input>
             
             {RightIcon && (
-              <span className="icon">
-                <RightIcon className="icon__svg"/>
-              </span>
+              <div className="input__icon input__icon--right">
+                <RightIcon />
+              </div>
             )}
-          </>
+          </div>
         )}
       />
       
