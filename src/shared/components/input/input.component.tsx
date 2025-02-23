@@ -65,6 +65,8 @@ const Input = <T extends FieldValues>({
               className={classNames(
                 'input',
                 error.length && 'input--error',
+                !!LeftIcon && 'input--has-left-icon',
+                !!RightIcon && 'input--has-right-icon',
               )}
             >
             
