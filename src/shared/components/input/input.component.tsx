@@ -14,9 +14,25 @@ interface Props<T extends FieldValues> {
   LeftIcon?: string;
   defaultValue?: PathValue<T, Path<T>>;
   error?: string;
+  success?: boolean,
   disabled?: boolean;
 }
 
+
+/**
+ * @param {string} belongsTo - belongsTo="form" -> the input has a class 'form__input'
+ * @param {string} name - html attribute of the input
+ * @param {string} label - text above the input
+ * @param {svg} RightIcon - right icon in the input
+ * @param {svg} LeftIcon - right icon in the input
+ * @param {control} control - control from useForm func of 'react-hook-form' lib
+ * @param defaultValue - default value of input
+ * @param {string} type - html attr of the input
+ * @param {string} placeholder - placeholder
+ * @param {string} error - error text under the input
+ * @param {boolean} success - if operation was successful
+ * @param {boolean} disabled - html attr of the input
+ * */
 const Input = <T extends FieldValues>({
   belongsTo,
   name,
@@ -28,17 +44,25 @@ const Input = <T extends FieldValues>({
   type = 'text',
   placeholder = '',
   error = '',
+  success = false,
   disabled = false,
 }: Props<T>) => {
   return (
-    <div className={classNames(`${belongsTo}__input-field`, 'input-field')}>
+    <div
+      className={
+        classNames(
+          `${belongsTo}__input-field`,
+          'input-field',
+          disabled && 'input-field--disabled',
+          !!error?.length && 'input-field--error',
+          success && 'input-field--success'
+        )
+      }
+    >
       {label && (
         <label
           htmlFor={name}
-          className={classNames(
-            'label',
-            error.length && 'label-error',
-          )}
+          className="label"
         >
           {label}
         </label>
@@ -51,7 +75,12 @@ const Input = <T extends FieldValues>({
         render={({field}) => (
           <div className="input-wrapper">
             {LeftIcon && (
-              <div className="input__icon">
+              <div className={classNames(
+                'input__icon',
+                disabled && 'input__icon--disabled',
+                error?.length > 0 && 'input__icon--error',
+                success && 'input__icon--success'
+              )}>
                 <LeftIcon />
               </div>
             )}
@@ -64,16 +93,20 @@ const Input = <T extends FieldValues>({
               disabled={disabled}
               className={classNames(
                 'input',
-                error.length && 'input--error',
                 !!LeftIcon && 'input--has-left-icon',
                 !!RightIcon && 'input--has-right-icon',
+                error.length && 'input--error',
+                success && 'input--success'
               )}
-            >
-            
-            </input>
+            />
             
             {RightIcon && (
-              <div className="input__icon input__icon--right">
+              <div className={classNames(
+                'input__icon input__icon--right',
+                disabled && 'input__icon--disabled',
+                error?.length > 0 && 'input__icon--error',
+                success && 'input__icon--success'
+              )}>
                 <RightIcon />
               </div>
             )}
