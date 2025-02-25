@@ -1,18 +1,19 @@
 import React, { FC } from 'react';
+import './button.component.scss';
 import classNames from "classnames";
 
 interface ButtonProps {
   belongsTo: string;
-  label: string;
-  onClick: () => void;
+  children: string;
+  callback: () => void;
   isSecondary?: boolean;
   isDisabled?: boolean;
 }
 
 export const Button: FC<ButtonProps> = ({
   belongsTo,
-  label,
-  onClick,
+  children,
+  callback,
   isSecondary = false,
   isDisabled = false,
 }) => {
@@ -20,15 +21,15 @@ export const Button: FC<ButtonProps> = ({
     `${belongsTo}__button`,
     'button',
     { 'button--secondary': isSecondary },
-  )
+  );
   
   return (
     <button
       className={classes}
-      onClick={onClick}
+      onClick={callback}
       disabled={isDisabled}
     >
-      {label}
+      {children}
     </button>
-  )
+  );
 }
