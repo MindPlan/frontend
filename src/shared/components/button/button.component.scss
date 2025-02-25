@@ -2,10 +2,16 @@
 @use '../../styles/typography.scss' as typography;
 
 .button {
-  padding: 16px 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 
-  background-color: colors.$COLOR_BLUE_MEDIUM;
-  border: none;
+  padding: 16px 32px;
+  width: 100%;
+
+  background-color: colors.$COLOR_GRAY_100;
+  border: 2px solid colors.$COLOR_GRAY_100;
   border-radius: 4px;
 
   color: colors.$COLOR_GRAY_0;
@@ -16,21 +22,64 @@
     0,
   );
 
-  &:hover {}
+  transition:
+          box-shadow 0.2s ease-in-out,
+          border-color 0.2s ease-in-out;
 
-  &:active {}
+  & > svg > path {
+    stroke: colors.$COLOR_GRAY_0;
+  }
+
+  &:hover {
+    box-shadow: 1px 6px 17px rgba(20, 20, 20, 0.5);
+  }
+
+  &:active {
+    border-color: colors.$COLOR_BLUE_PRIMARY;
+    box-shadow: unset;
+  }
 
   &:disabled {
     pointer-events: none;
+    background-color: colors.$COLOR_GRAY_40;
+    border-color: colors.$COLOR_GRAY_40;
   }
 
   &--secondary {
-    &:hover {}
+    background-color: transparent;
+    border-color: colors.$COLOR_GRAY_40;
+    border-width: 1px;
+    color: colors.$COLOR_GRAY_100;
 
-    &:active {}
+    & > svg > path {
+      stroke: colors.$COLOR_GRAY_100;
+    }
+
+    &:hover {
+      border-color: colors.$COLOR_GRAY_100;
+      box-shadow: 0 0 20px 5px rgba(203, 204, 207, 0.6);
+    }
+
+    &:active {
+      border-color: colors.$COLOR_GRAY_100;
+      outline: 1px solid colors.$COLOR_GRAY_100;
+      box-shadow: unset;
+    }
 
     &:disabled {
       pointer-events: none;
+      background-color: unset;
+      color: colors.$COLOR_GRAY_40;
+      border-color: colors.$COLOR_GRAY_30;
+
+      & > svg > path {
+        stroke: colors.$COLOR_GRAY_40;
+      }
     }
+  }
+
+  &--small {
+    width: unset;
+    padding: 16px 16px;
   }
 }

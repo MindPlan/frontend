@@ -8,6 +8,9 @@ interface ButtonProps {
   callback: () => void;
   isSecondary?: boolean;
   isDisabled?: boolean;
+  small?: boolean;
+  LeftIcon?: string;
+  RightIcon?: string;
 }
 
 export const Button: FC<ButtonProps> = ({
@@ -16,11 +19,15 @@ export const Button: FC<ButtonProps> = ({
   callback,
   isSecondary = false,
   isDisabled = false,
+  small = false,
+  LeftIcon,
+  RightIcon,
 }) => {
   const classes = classNames(
     `${belongsTo}__button`,
     'button',
-    { 'button--secondary': isSecondary },
+    isSecondary && 'button--secondary',
+    small && 'button--small',
   );
   
   return (
@@ -29,7 +36,11 @@ export const Button: FC<ButtonProps> = ({
       onClick={callback}
       disabled={isDisabled}
     >
+      <LeftIcon />
+      
       {children}
+      
+      <RightIcon />
     </button>
   );
 }
