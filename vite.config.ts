@@ -6,6 +6,7 @@ import { ViteAliases } from 'vite-aliases';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
+    react(),
     svgr({
       svgrOptions: {
         exportType: 'default',
@@ -15,7 +16,6 @@ export default defineConfig({
       },
       include: '**/*.svg',
     }),
-    react(),
     ViteAliases(),
   ],
   define: {
