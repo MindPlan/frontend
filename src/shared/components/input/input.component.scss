@@ -1,11 +1,141 @@
+@use '../../styles/colors.scss' as colors;
+@use '../../styles/typography.scss' as typography;
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .label {
+    color: colors.$COLOR_GRAY_100;
+
+    @include typography.typography(
+      typography.$FONT_SIZE_BODY,
+      typography.$FONT_WEIGHT_MEDIUM,
+      typography.$LINE_HEIGHT_GIANT
+    );
+  }
+
+  .error-message {
+    color: colors.$COLOR_SYSTEM_RED_PRIMARY;
+
+    @include typography.typography(
+      typography.$FONT_SIZE_INPUT,
+      typography.$FONT_WEIGHT_REGULAR,
+      typography.$LINE_HEIGHT_PRIMARY
+    );
+  }
+
+  &:hover {
+    .input__icon > svg > path {
+      stroke: colors.$COLOR_GRAY_100;
+    }
+
+    .input {
+      border: 1px solid colors.$COLOR_GRAY_40;
+      color: colors.$COLOR_GRAY_80;
+    }
+  }
+
+  &:focus-within {
+    .input__icon > svg > path {
+      stroke: colors.$COLOR_BLUE_PRIMARY;
+    }
+
+    .input {
+      outline-color: colors.$COLOR_BLUE_PRIMARY;
+      border-color: colors.$COLOR_BLUE_PRIMARY;
+      color: colors.$COLOR_GRAY_80;
+    }
+  }
+
+  &--disabled {
+    pointer-events: none;
+  }
+
+  &--error {
+    pointer-events: none;
+
+    .input__icon > svg > path {
+      stroke: colors.$COLOR_SYSTEM_RED_PRIMARY;
+    }
+
+    .input {
+      border: 2px solid colors.$COLOR_SYSTEM_RED_PRIMARY;
+      background-color: colors.$COLOR_SYSTEM_RED_SECONDARY;
+      color: colors.$COLOR_SYSTEM_RED_PRIMARY
+    }
+  }
+
+  &--success {
+    pointer-events: none;
+  }
+}
+
+.input__icon {
+  position: absolute;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  width: 24px;
+  margin-left: 16px;
+
+  &--right {
+    margin-left: unset;
+    right: 16px;
+  }
+
+  & > svg > path {
+    stroke: colors.$COLOR_GRAY_40;
+    transition: all 0.2s linear;
+  }
+
+  &--disabled > svg > path {
+    stroke: colors.$COLOR_GRAY_30;
+  }
+
+  &--success > svg > path {
+    stroke: colors.$COLOR_GRAY_40;
+  }
+}
+
 .input {
+  width: 100%;
+  height: 48px;
+  padding-left: 16px;
+  border-radius: 8px;
+  border: 1px solid colors.$COLOR_GRAY_30;
 
-  &--filled {}
-  &--warning {}
-  &--success {}
-  &--error {}
+  @include typography.typography(
+    typography.$FONT_SIZE_INPUT,
+    typography.$FONT_WEIGHT_REGULAR,
+    typography.$LINE_HEIGHT_PRIMARY,
+  );
 
-  &:hover {}
-  &:focus {}
-  &:disabled {}
+  color: colors.$COLOR_GRAY_60;
+
+  transition: all 0.2s linear;
+
+  &--warning {
+    // DOES NOT NEEDED TO BE IMPLEMENTED according to the figma design. 24.02.2025
+  }
+
+  &--success {
+    border: 2px solid colors.$COLOR_SYSTEM_GREEN_PRIMARY;
+  }
+
+  &--has-left-icon {
+    padding-left: 48px;
+  }
+
+  &:disabled {
+    border-color: colors.$COLOR_GRAY_20;
+    color: colors.$COLOR_GRAY_30;
+  }
+
+  &-wrapper {
+    display: flex;
+    position: relative;
+    align-items: center;
+  }
 }

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
-import { RedirectPage } from '../pages/redirect.page';
+import { Route, Routes } from 'react-router-dom';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+
+import { RedirectPage } from '../pages/redirect.page';
 import LandingPage from '~/modules/landing/pages/landing.page';
 import RegistrationPage from '~/modules/auth/pages/registration/registration.page';
 import LoginPage from '~/modules/auth/pages/login/login.page';
@@ -11,7 +12,7 @@ const GooglePage = () => {
   const [token, setToken] = useState<string | null>(null);
 
   return (
-    <>
+    <div style={{ maxWidth: '500px' }}>
       <h1>Your token:</h1>
       <p>
         {token ? token : 'You need to sign in via google to see your token bro'}
@@ -21,7 +22,7 @@ const GooglePage = () => {
         <GoogleLogin
           onSuccess={async ({ credential }) => {
             // const result = await authService.sendGoogleJWT(credential, 'registration');
-
+      
             setToken(credential);
           }}
           onError={() => {
@@ -36,7 +37,7 @@ const GooglePage = () => {
           Copy token!
         </button>
       )}
-    </>
+    </div>
   );
 };
 

@@ -1,12 +1,20 @@
 {
     "compilerOptions": {
-        "jsx": "react",
+        "jsx": "react-jsx",
         "baseUrl": ".",
         "module": "ESNext",
         "moduleResolution": "bundler",
         "target": "ES2020",
         "allowSyntheticDefaultImports": true,
         "allowImportingTsExtensions": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "types": [
+            "vite-plugin-svgr/client"
+        ],
+        "include": [
+            "src"
+        ],
         "paths": {
             "~assets/*": [
                 "src/assets/*"
@@ -37,6 +45,9 @@
             ],
             "~tag/*": [
                 "src/modules/tag/*"
+            ],
+            "~types/*": [
+                "src/types/*"
             ]
         }
     }
