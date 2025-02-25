@@ -26,8 +26,13 @@
           box-shadow 0.2s ease-in-out,
           border-color 0.2s ease-in-out;
 
-  & > svg > path {
-    stroke: colors.$COLOR_GRAY_0;
+  & > svg {
+    width: 16px;
+    height: 16px;
+
+    path {
+      stroke: colors.$COLOR_GRAY_0;
+    }
   }
 
   &:hover {
