@@ -89,7 +89,13 @@ const LandingPage: React.FC = () => {
           <div className={styles.text}>
             <h1 className={styles.title}>{currentInfo.title}</h1>
 
-            <p className={`${styles.description} ${index === 0 || index === 2 ? styles.wide : ''}`}>{currentInfo.description}</p>
+            <p
+              className={`${styles.description} ${
+                index === 0 || index === 2 ? styles.wide : ''
+              }`}
+            >
+              {currentInfo.description}
+            </p>
           </div>
         </motion.div>
 

@@ -1,0 +1,12 @@
+@use '~shared/styles/colors.scss' as colors;
+@use '~shared/styles/typography.scss' as typography;
+
+.title-animation {
+  color: colors.$COLOR_GRAY_0;
+  @include typography.typography(
+    typography.$FONT_SIZE_TITLE_3,
+    typography.$FONT_WEIGHT_MEDIUM,
+    typography.$LINE_HEIGHT_EXTRA_LARGE,
+    typography.$LETTER_SPACING_PRIMARY
+  );
+}

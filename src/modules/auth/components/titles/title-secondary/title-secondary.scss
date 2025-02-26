@@ -1,0 +1,12 @@
+@use '~shared/styles/colors.scss' as colors;
+@use '~shared/styles/typography.scss' as typography;
+
+.title-secondary {
+  color: colors.$COLOR_BLACK;
+  @include typography.typography(
+    typography.$FONT_SIZE_TITLE_2,
+    typography.$FONT_WEIGHT_MEDIUM,
+    typography.$LINE_HEIGHT_LARGE,
+    typography.$LETTER_SPACING_SECONDARY
+  );
+}

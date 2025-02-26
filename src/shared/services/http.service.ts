@@ -1,7 +1,8 @@
 import type { IHttpClient } from './types';
 import type { IHttpConfig, IMap, IResponse } from './types';
 
-const SERVER_URL = import.meta.env.VITE_BACKEND_URL;
+// const SERVER_URL = import.meta.env.VITE_BACKEND_URL;
+const SERVER_URL = 'https://backend.com';
 
 export class HttpService {
   constructor(
