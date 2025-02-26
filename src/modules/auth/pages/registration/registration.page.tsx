@@ -10,7 +10,7 @@ import { AuthInfos } from '~modules/auth/utils/auth.data';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const RegistrationPage = () => {
-  const [isSubmitted, setIsSubmitted] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [index, setIndex] = useState(0);
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { AppleIcon, ArrowBackIcon, GoogleIcon } from '~assets/svg/index';
 import Logo from '~assets/svg/logo.svg';
 import TitleSecondary from '~modules/auth/components/titles/title-secondary/title-secondary.component';
@@ -6,9 +6,19 @@ import SubtitleSecondary from '../../components/subtitles/subtitle-secondary/sub
 import './auth-page-wrapper.scss';
 import { useNavigate } from 'react-router-dom';
 
-const AuthPageWrapper = ({ children, isSubmitted, userEmail }) => {
+interface AuthPageWrapperProps {
+  children: ReactNode;
+  isSubmitted: boolean;
+  userEmail: string;
+}
+
+const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({
+  children,
+  isSubmitted,
+  userEmail,
+}) => {
   const navigate = useNavigate();
-  const [showInput, setShowInput] = useState(false);
+  const [showInput, setShowInput] = useState<boolean>(false);
 
   const goToLandingPage = () => {
     navigate('/');

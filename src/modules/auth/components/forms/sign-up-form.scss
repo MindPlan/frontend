@@ -1,0 +1,11 @@
+.sign-up-form {
+  
+  &__field {
+    margin-bottom: 8px;
+
+    &:last-of-type {
+      margin-bottom: 16px;
+    }
+  }
+
+}
