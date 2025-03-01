@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { Button } from '../components/button';
+import Button from '../components/button/button.component.tsx';
 import Input from "../components/input/input.component.tsx";
 import { useForm } from "react-hook-form";
 import IconEmail from '~assets/icons/clock.svg';

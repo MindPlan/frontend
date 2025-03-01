@@ -1,10 +1,12 @@
 import React, { ReactNode, useState } from 'react';
-import { AppleIcon, ArrowBackIcon, GoogleIcon } from '~assets/svg/index';
+import { AppleIcon, ArrowBackIcon } from '~assets/svg/index';
 import Logo from '~assets/svg/logo.svg';
 import TitleSecondary from '~modules/auth/components/titles/title-secondary/title-secondary.component';
 import SubtitleSecondary from '../../components/subtitles/subtitle-secondary/subtitle-secondary.component';
 import './auth-page-wrapper.scss';
 import { useNavigate } from 'react-router-dom';
+import { GoogleLogin } from "@react-oauth/google";
+import { authService } from "../../services/auth.service.ts";
 
 interface AuthPageWrapperProps {
   children: ReactNode;
@@ -87,7 +89,19 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({
             <>
               <div className='auth__loginwith-container loginwith-container'>
                 <div className='loginwith-container__icon-container'>
-                  <GoogleIcon width='20px' height='20px' />
+                  <GoogleLogin
+                    onSuccess={async ({ credential }) => {
+                      await authService.sendGoogleJWT(credential, 'registration');
+                    }}
+                    onError={() => {
+                      console.log('Login Failed');
+                    }}
+                    
+                    size='large'
+                    shape='circle'
+                    type='icon'
+                    theme="filled_blue"
+                  />
                 </div>
                 <div className='loginwith-container__icon-container'>
                   <AppleIcon width='24px' height='24px' />

@@ -7,7 +7,7 @@ import { authService } from '~modules/auth/services/auth.service';
 import { RegistrationRequest } from '~auth/types/registration-request.type';
 
 import Input from '~shared/components/input/input.component.tsx';
-import Button from '~shared/components/button.tsx';
+import Button from '~shared/components/button/button.component.tsx';
 import Checkbox from "~shared/components/checkbox/checkbox.component.tsx";
 
 import { validator } from "~shared/utils/validator.util.ts";
