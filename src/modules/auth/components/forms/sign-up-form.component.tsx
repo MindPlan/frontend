@@ -62,35 +62,61 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
   return (
     <form className='sign-up-form'>
       <Input
-        belongsTo='sign-up'
+        belongsTo='sign-up-form'
         name='name'
         control={control}
         placeholder='First name'
         error={errors.name?.message}
+        rules={{
+          required: 'is required',
+          minLength: {
+            value: 8,
+            message: 'Length of the first name must be at lest 3 characters.'
+          }
+        }}
         onClick={onInputClick}
       />
       
       <Input
-        belongsTo='sign-up'
+        belongsTo='sign-up-form'
         name='surname'
         control={control}
         placeholder='Last name'
         error={errors.surname?.message}
+        rules={{
+          required: 'is required',
+          minLength: {
+            value: 8,
+            message: 'Length of the last name must be at lest 3 characters.'
+          }
+        }}
         onClick={onInputClick}
       />
       
       <Input
-        belongsTo='sign-up'
+        belongsTo='sign-up-form'
         name='email'
         control={control}
         placeholder='Email address'
         type='email'
         error={errors.email?.message}
+        rules={{
+          required: 'E-mail is required',
+          validate: (email: string) => validator.validateEmail(email),
+        }}
         onClick={onInputClick}
       />
       
+      {/*
+        TODO for Vira: add a clickable eye-icon to the password input.
+        
+        I would recommend to create HOC creator
+        const ClickableIcon = (Icon: string, onClick: () => void): ReactNode(i hope) => {}
+        And provide this icon to this Input.
+      */}
+      
       <Input
-        belongsTo='sign-up'
+        belongsTo='sign-up-form'
         name='password'
         control={control}
         placeholder='Password'
@@ -98,13 +124,13 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
         error={errors.password?.message}
         rules={{
           required: 'Password is required',
-          validate: (value: string) => validator.validatePassword(value),
+          validate: (password: string) => validator.validatePassword(password),
         }}
         onClick={onInputClick}
       />
       
       <Checkbox
-        belongsTo="sign-up"
+        belongsTo="sign-up-form"
         name='agreeToTerms'
         control={control}
         labelText="I agree to the processing of Personal Data"
@@ -115,7 +141,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
       )}
 
       <Button
-        belongsTo='sign-up'
+        belongsTo='sign-up-form'
         callback={handleSubmit(onSubmit)}
         isDisabled={mutation.isPending }
       >
