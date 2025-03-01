@@ -21,15 +21,15 @@ class AuthService {
       }
     }
     
-    return this.httpService.get<AuthGoogleResponse>(`/auth/${action}-google/`, config);
+    return this.httpService.get<AuthGoogleResponse>(`auth/${action}-google/`, config);
   }
   
   public async registration(data: RegistrationRequest): Promise<void> {
-    return this.httpService.post<void, RegistrationRequest>('/auth/registration/', data);
+    return this.httpService.post<void, RegistrationRequest>('auth/registration/', data);
   }
   
   public async login(data: LoginRequest): Promise<LoginResponse> {
-    return this.httpService.post<LoginResponse, LoginRequest>('/auth/sign-in/', data);
+    return this.httpService.post<LoginResponse, LoginRequest>('auth/sign-in/', data);
   }
   
   public async verifyEmail(jwt: string): Promise<void> {
