@@ -1,13 +1,16 @@
-import React from 'react';
 import './sign-up-form.scss';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
+
 import { authService } from '~modules/auth/services/auth.service';
 import { RegistrationRequest } from '~auth/types/registration-request.type';
 
 import Input from '~shared/components/input/input.component';
 import { Button } from '~shared/components/button';
 import Checkbox from "~shared/components/checkbox/checkbox.component.tsx";
+
+import { validator } from "~shared/utils/validator.util.ts";
 
 interface SignUpFormValues extends RegistrationRequest {
   agreeToTerms: boolean;
@@ -22,6 +25,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
     control,
     handleSubmit,
     formState: { errors },
+    clearErrors,
   } = useForm<SignUpFormValues>({
     defaultValues: {
       name: '',
@@ -49,6 +53,11 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
   const onSubmit = (data: SignUpFormValues) => {
     mutation.mutate(data);
   };
+  
+  // It is needed to remove errors, otherwise user does not have ability to click on input
+  const onInputClick = () => {
+    clearErrors()
+  }
 
   return (
     <form className='sign-up-form'>
@@ -58,6 +67,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
         control={control}
         placeholder='First name'
         error={errors.name?.message}
+        onClick={onInputClick}
       />
       
       <Input
@@ -66,6 +76,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
         control={control}
         placeholder='Last name'
         error={errors.surname?.message}
+        onClick={onInputClick}
       />
       
       <Input
@@ -75,6 +86,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
         placeholder='Email address'
         type='email'
         error={errors.email?.message}
+        onClick={onInputClick}
       />
       
       <Input
@@ -86,21 +98,9 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
         error={errors.password?.message}
         rules={{
           required: 'Password is required',
-          minLength: {
-            value: 8,
-            message: 'Password must be at least 8 characters',
-          },
-          validate: {
-            hasUppercase: (value: string) =>
-              /[A-Z]/.test(value) ||
-              'Password must contain at least one uppercase letter',
-            hasDigit: (value: string) =>
-              /\d/.test(value) || 'Password must contain at least one digit',
-            hasSymbol: (value: string) =>
-              /[!@#$%^&*(),.?":{}|<>_]/.test(value) ||
-              'Password must contain at least one special character',
-          },
+          validate: (value: string) => validator.validatePassword(value),
         }}
+        onClick={onInputClick}
       />
       
       <Checkbox

@@ -17,6 +17,7 @@ interface Props<T extends FieldValues> {
   success?: boolean,
   disabled?: boolean;
   rules?: RegisterOptions<T, Path<T>>;
+  onClick?: () => void;
 }
 
 
@@ -34,6 +35,7 @@ interface Props<T extends FieldValues> {
  * @param {boolean} success - if operation was successful
  * @param {boolean} disabled - html attr of the input
  * @param rules - rules for <Control rules={rules}> of the input
+ * @param onClick - onClick fn
  * */
 const Input = <T extends FieldValues>({
   belongsTo,
@@ -49,6 +51,7 @@ const Input = <T extends FieldValues>({
   success = false,
   disabled = false,
   rules,
+  onClick,
 }: Props<T>) => {
   return (
     <div
@@ -61,6 +64,7 @@ const Input = <T extends FieldValues>({
           success && 'input-field--success'
         )
       }
+      onClick={onClick}
     >
       {label && (
         <label
