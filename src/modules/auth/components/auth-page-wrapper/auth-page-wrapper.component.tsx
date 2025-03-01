@@ -91,7 +91,7 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({
                 <div className='loginwith-container__icon-container'>
                   <GoogleLogin
                     onSuccess={async ({ credential }) => {
-                      await authService.sendGoogleJWT(credential, 'registration');
+                      await authService.sendGoogleJWT(credential);
                     }}
                     onError={() => {
                       console.log('Login Failed');

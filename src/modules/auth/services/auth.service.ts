@@ -14,14 +14,10 @@ class AuthService {
     this.httpService = httpService;
   }
   
-  public async sendGoogleJWT(token: GoogleTokenType, action: 'registration' | 'login'): Promise<AuthGoogleResponse> {
-    const config: IHttpConfig = {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      }
-    }
+  public async sendGoogleJWT(token: GoogleTokenType): Promise<AuthGoogleResponse> {
+    const data = { credential: token }
     
-    return this.httpService.get<AuthGoogleResponse>(`auth/${action}-google/`, config);
+    return this.httpService.post<AuthGoogleResponse, { credential: string }>(`auth/google/`, data);
   }
   
   public async registration(data: RegistrationRequest): Promise<void> {
