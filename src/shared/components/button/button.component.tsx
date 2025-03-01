@@ -36,11 +36,11 @@ export const Button: FC<ButtonProps> = ({
       onClick={callback}
       disabled={isDisabled}
     >
-      {/* <LeftIcon /> */}
+      {LeftIcon && <LeftIcon/>}
       
       {children}
       
-      {/* <RightIcon /> */}
+      {RightIcon && <RightIcon/>}
     </button>
   );
 }
