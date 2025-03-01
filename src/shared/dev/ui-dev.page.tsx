@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react';
 import { Button } from '../components/button';
 import Input from "../components/input/input.component.tsx";
 import { useForm } from "react-hook-form";
-import IconEmail from '~assets/icons/email.svg';
+import IconEmail from '~assets/icons/clock.svg';
 import IconX from '~assets/icons/smile.svg';
 
 const UIDevPage = () => {
