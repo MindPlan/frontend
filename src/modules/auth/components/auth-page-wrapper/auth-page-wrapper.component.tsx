@@ -1,12 +1,16 @@
 import React, { ReactNode, useState } from 'react';
-import { AppleIcon, ArrowBackIcon } from '~assets/svg/index';
-import Logo from '~assets/svg/logo.svg';
+import { useNavigate } from 'react-router-dom';
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
+import './auth-page-wrapper.scss';
+
 import TitleSecondary from '~modules/auth/components/titles/title-secondary/title-secondary.component';
 import SubtitleSecondary from '../../components/subtitles/subtitle-secondary/subtitle-secondary.component';
-import './auth-page-wrapper.scss';
-import { useNavigate } from 'react-router-dom';
-import { GoogleLogin } from "@react-oauth/google";
+
 import { authService } from "../../services/auth.service.ts";
+import useAuthStore from "~store/auth.store.ts";
+
+import { AppleIcon, ArrowBackIcon } from '~assets/svg/index';
+import Logo from '~assets/svg/logo.svg';
 
 interface AuthPageWrapperProps {
   children: ReactNode;
@@ -21,6 +25,7 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({
 }) => {
   const navigate = useNavigate();
   const [showInput, setShowInput] = useState<boolean>(false);
+  const { login } = useAuthStore();
 
   const goToLandingPage = () => {
     navigate('/');
@@ -33,6 +38,12 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({
   const goToLoginPage = () => {
     navigate('/login');
   };
+  
+  const onSuccessLoginAuth = async (googleResponse: CredentialResponse) => {
+    const response = await authService.sendGoogleJWT(googleResponse.credential);
+    // Yes, 'access_token', not accessToken
+    login(response['access_token'], response['refresh_token']);
+  }
 
   return (
     <div className='auth auth__wrapper'>
@@ -43,6 +54,7 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({
 
         <div className='auth__back-button' onClick={goToLandingPage}>
           <ArrowBackIcon className='auth__arrow-back' />
+          
           <span className='auth__back-text'>Go back</span>
         </div>
       </header>
@@ -67,15 +79,17 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({
               }
             />
           </div>
+          
           <div className='auth__subtitle-container'>
             <SubtitleSecondary
               text={
                 isSubmitted
                   ? `The link has been sent to ${userEmail}`
-                  : 'Sign up to start  your 30 days free trial'
+                  : 'Sign up to start your 30 days free trial'
               }
             />
           </div>
+          
           {showInput && (
             <input
               type='text'
@@ -83,6 +97,7 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({
               className='auth__input'
             />
           )}
+          
           {isSubmitted ? (
             <button onClick={() => setShowInput(true)}>Connect</button>
           ) : (
@@ -90,9 +105,7 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({
               <div className='auth__loginwith-container loginwith-container'>
                 <div className='loginwith-container__icon-container'>
                   <GoogleLogin
-                    onSuccess={async ({ credential }) => {
-                      await authService.sendGoogleJWT(credential);
-                    }}
+                    onSuccess={onSuccessLoginAuth}
                     onError={() => {
                       console.log('Login Failed');
                     }}
@@ -103,10 +116,12 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({
                     theme="filled_blue"
                   />
                 </div>
+                
                 <div className='loginwith-container__icon-container'>
                   <AppleIcon width='24px' height='24px' />
                 </div>
               </div>
+              
               <div className='auth__auth-divider auth-divider'>
                 <div className='auth-divider__insertion'>
                   <span>or</span>
@@ -115,9 +130,12 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({
             </>
           )}
         </div>
+        
         <div>{children}</div>
+        
         <div className='auth__login-text'>
           Already have an account?{' '}
+          
           <span onClick={goToLoginPage} className='auth__login'>
             Log in
           </span>
