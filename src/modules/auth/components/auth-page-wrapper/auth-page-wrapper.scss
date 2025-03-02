@@ -111,6 +111,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
+      div[role="button"][aria-labelledby="button-label"] {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        background-color: transparent !important;
+      }
     }
   }
 

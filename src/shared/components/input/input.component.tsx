@@ -1,5 +1,5 @@
 import React, { HTMLInputTypeAttribute } from 'react';
-import {Control, Controller, FieldValues, Path, PathValue} from 'react-hook-form';
+import { Control, Controller, FieldValues, Path, PathValue, RegisterOptions } from 'react-hook-form';
 import './input.component.scss';
 import classNames from "classnames";
 
@@ -16,6 +16,8 @@ interface Props<T extends FieldValues> {
   error?: string;
   success?: boolean,
   disabled?: boolean;
+  rules?: RegisterOptions<T, Path<T>>;
+  onClick?: () => void;
 }
 
 
@@ -32,6 +34,8 @@ interface Props<T extends FieldValues> {
  * @param {string} error - error text under the input
  * @param {boolean} success - if operation was successful
  * @param {boolean} disabled - html attr of the input
+ * @param rules - rules for <Control rules={rules}> of the input
+ * @param onClick - onClick fn
  * */
 const Input = <T extends FieldValues>({
   belongsTo,
@@ -46,6 +50,8 @@ const Input = <T extends FieldValues>({
   error = '',
   success = false,
   disabled = false,
+  rules,
+  onClick,
 }: Props<T>) => {
   return (
     <div
@@ -58,6 +64,7 @@ const Input = <T extends FieldValues>({
           success && 'input-field--success'
         )
       }
+      onClick={onClick}
     >
       {label && (
         <label
@@ -72,6 +79,7 @@ const Input = <T extends FieldValues>({
         name={name}
         control={control}
         defaultValue={defaultValue}
+        rules={rules}
         render={({field}) => (
           <div className="input-wrapper">
             {LeftIcon && (

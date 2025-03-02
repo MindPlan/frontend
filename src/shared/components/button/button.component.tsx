@@ -13,7 +13,7 @@ interface ButtonProps {
   RightIcon?: string;
 }
 
-export const Button: FC<ButtonProps> = ({
+const Button: FC<ButtonProps> = ({
   belongsTo,
   children,
   callback,
@@ -36,11 +36,13 @@ export const Button: FC<ButtonProps> = ({
       onClick={callback}
       disabled={isDisabled}
     >
-      {/* <LeftIcon /> */}
+      {LeftIcon && <LeftIcon/>}
       
       {children}
       
-      {/* <RightIcon /> */}
+      {RightIcon && <RightIcon/>}
     </button>
   );
 }
+
+export default Button;
