@@ -7,15 +7,19 @@ import RegistrationPage from '~/modules/auth/pages/registration/registration.pag
 import LoginPage from '~/modules/auth/pages/login/login.page';
 import GooglePage from '~shared/dev/google-token-dev.page.tsx';
 import UIDevPage from '~shared/dev/ui-dev.page.tsx';
+import Dashboard from "~/modules/dashboard/pages/dashboard.page.tsx";
 
 export const PublicRoutes = () => (
   <Routes>
     <Route path='/' element={<LandingPage />} />
-    <Route path='/registration' element={<RegistrationPage />} /> 
-    <Route path='/login' element={<LoginPage />} /> 
+    <Route path='/registration' element={<RegistrationPage />} />
+    <Route path='/login' element={<LoginPage />} />
     <Route path='/confirmation' element={<>Confirmation</>} />
     <Route path='/dev/get-google-token' element={<GooglePage />} />
     <Route path='/dev/ui' element={<UIDevPage />} />
+    
+    <Route path="/dashboard" element={<Dashboard/>}/>
+    
     <Route path='*' element={<RedirectPage />} />
   </Routes>
 );

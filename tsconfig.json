@@ -48,6 +48,15 @@
             ],
             "~types/*": [
                 "src/types/*"
+            ],
+            "~routes/*": [
+                "src/routes/*"
+            ],
+            "~dashboard/*": [
+                "src/modules/dashboard/*"
+            ],
+            "~hooks/*": [
+                "src/shared/hooks/*"
             ]
         }
     }
