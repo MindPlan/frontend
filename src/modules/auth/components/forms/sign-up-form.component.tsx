@@ -70,7 +70,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
         rules={{
           required: 'is required',
           minLength: {
-            value: 8,
+            value: 3,
             message: 'Length of the first name must be at lest 3 characters.'
           }
         }}
@@ -86,7 +86,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
         rules={{
           required: 'is required',
           minLength: {
-            value: 8,
+            value: 3,
             message: 'Length of the last name must be at lest 3 characters.'
           }
         }}
