@@ -4,6 +4,7 @@ import { useLocation } from 'react-router';
 import './icons-component.component.scss';
 
 import { useSidebarRoutingKeys } from '~shared/hooks/sidebar-routing-keys.hook.ts';
+import {Link} from "react-router-dom";
 
 interface Props {
   paths: string[];
@@ -22,9 +23,9 @@ const IconsComponent: FC<Props> = ({ paths, isBottom = false }) => {
         const Icon = iconWithType[0];
         
         return (
-          <a
+          <Link
             key={pathForLink}
-            href={pathForLink}
+            to={pathForLink}
             className={
               classNames(
                 'navigation__link',
@@ -35,7 +36,7 @@ const IconsComponent: FC<Props> = ({ paths, isBottom = false }) => {
             }
           >
             {Icon && <Icon/>} {capitalize(pathForLink)}
-          </a>
+          </Link>
         )
       })}
     </nav>
