@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import Sidebar from '~shared/components/sidebar/sidebar.component.tsx';
-import './tasks.page.scss';
+import './inbox.page.scss';
 
-const TasksPage: FC = () => {
+const InboxPage: FC = () => {
   return (
-    <main className="tasks-page">
+    <main className="inbox-page">
       <Sidebar />
     </main>
   );
 }
 
-export default TasksPage;
+export default InboxPage;

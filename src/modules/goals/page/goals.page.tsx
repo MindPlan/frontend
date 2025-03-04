@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import Sidebar from '~shared/components/sidebar/sidebar.component.tsx';
-import './tasks.page.scss';
+import './goals.page.scss';
 
-const TasksPage: FC = () => {
+const GoalsPage: FC = () => {
   return (
-    <main className="tasks-page">
+    <main className="goals-page">
       <Sidebar />
     </main>
   );
 }
 
-export default TasksPage;
+export default GoalsPage;

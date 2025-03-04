@@ -2,12 +2,11 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { RedirectPage } from '../modules/auth/pages/redirect.page.tsx';
-import LandingPage from '~/modules/landing/pages/landing.page';
-import RegistrationPage from '~/modules/auth/pages/registration/registration.page';
-import LoginPage from '~/modules/auth/pages/login/login.page';
+import LandingPage from '~modules/landing/pages/landing.page';
+import RegistrationPage from '~modules/auth/pages/registration/registration.page';
+import LoginPage from '~modules/auth/pages/login/login.page';
 import GooglePage from '~shared/dev/google-token-dev.page.tsx';
 import UIDevPage from '~shared/dev/ui-dev.page.tsx';
-import Dashboard from "~/modules/dashboard/pages/dashboard.page.tsx";
 
 export const PublicRoutes = () => (
   <Routes>
@@ -17,8 +16,6 @@ export const PublicRoutes = () => (
     <Route path='/confirmation' element={<>Confirmation</>} />
     <Route path='/dev/get-google-token' element={<GooglePage />} />
     <Route path='/dev/ui' element={<UIDevPage />} />
-    
-    <Route path="/dashboard" element={<Dashboard/>}/>
     
     <Route path='*' element={<RedirectPage />} />
   </Routes>
