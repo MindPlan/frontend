@@ -4,12 +4,14 @@ import Inbox from '~assets/icons/inbox.svg';
 import Calendar from '~assets/icons/calendar.svg';
 import Goals from '~assets/icons/calendar.svg'; // Now the icon is the same as Calendar!!!
 import Projects from '~assets/icons/project.svg';
+import Settings from '~assets/icons/settings.svg';
+import HelpAndSupport from '~assets/icons/help.svg';
 
 /**
  * There are routing keys only for the sidebar panel!
  *
  * @example
- * const sidebarKeys = useSidebarRoutingKeys();
+ * const { pathsAsArray, capitalize, getIcon } = useSidebarRoutingKeys();
  * */
 export const useSidebarRoutingKeys = () => {
   const pathsAsObject = {
@@ -18,7 +20,9 @@ export const useSidebarRoutingKeys = () => {
     INBOX: '/inbox',
     CALENDAR: '/calendar',
     GOALS: '/goals',
-    PROJECTS: '/projects'
+    PROJECTS: '/projects',
+    SETTINGS: '/settings',
+    HELP_AND_SUPPORT: '/help-and-support'
   }
   
   const iconsForPaths = {
@@ -28,16 +32,21 @@ export const useSidebarRoutingKeys = () => {
     calendar: [Calendar, 'stroke'],
     goals: [Goals, 'stroke'],
     projects: [Projects, 'stroke'],
+    
+    settings: [Settings, 'stroke'],
+    "help-and-support": [HelpAndSupport, 'stroke']
   }
   
-  const pathsAsArray = Object.keys(pathsAsObject).map(objKey => pathsAsObject[objKey]);
+  const allPathsAsArray = Object.keys(pathsAsObject).map(objKey => pathsAsObject[objKey]);
+  const pathsAsArray = allPathsAsArray.slice(0, -2);
+  const bottomPathsAsArray = allPathsAsArray.slice(pathsAsArray.length);
   
   const capitalize = (path: string): string => {
     // example: path = '/dashboard'
     // path.charAt(1) = 'd' (and we use toUpperCase for him). charAt(0) returns '/'
     // path.slice(2) = 'ashboard'
     // So we have 'D' + 'ashboard'
-    return path.charAt(1).toUpperCase() + path.slice(2);
+    return (path.charAt(1).toUpperCase() + path.slice(2)).replaceAll('-', ' ');
   }
   
   const getIcon = (path: string): string[] => {
@@ -62,6 +71,7 @@ export const useSidebarRoutingKeys = () => {
   return {
     pathsAsObject,
     pathsAsArray,
+    bottomPathsAsArray,
     capitalize,
     getIcon
   }

@@ -1,46 +1,25 @@
 import { FC } from 'react';
-import { useLocation } from 'react-router';
-import classNames from "classnames";
 import './sidebar.component.scss';
 import { useSidebarRoutingKeys } from '~shared/hooks/sidebar-routing-keys.hook.ts';
 
+import srcToLogoPNG from '~assets/png/logo-for-sidebar.png';
+import IconsComponent from "./icons-component/icons-component.component.tsx";
+
 const Sidebar: FC = () => {
-  const location = useLocation();
-  const path = '/' + location.pathname.split('/')[1];
-  const { pathsAsArray, capitalize, getIcon } = useSidebarRoutingKeys();
+  const { pathsAsArray, bottomPathsAsArray } = useSidebarRoutingKeys();
   
   return (
     <main className="dashboard">
       <aside className="dashboard__sidebar sidebar">
         <div className="sidebar__logo-block">
-          <img alt="MindPlan logo"/>
+          <img src={srcToLogoPNG} alt="MindPlan Logo"/>
           
           <p>MindPlan</p>
         </div>
         
-        <nav className="sidebar__navigation navigation">
-          {pathsAsArray.map(pathForLink => {
-            const iconWithType = getIcon(pathForLink)
-            const Icon = iconWithType[0];
-            
-            return (
-              <a
-                key={pathForLink}
-                href={pathForLink}
-                className={
-                  classNames(
-                    'navigation__link',
-                    pathForLink === path && 'navigation__link--active',
-                    iconWithType[1] === 'fill' && 'navigation__link--change-fill',
-                    iconWithType[1] === 'stroke' && 'navigation__link--change-stroke'
-                  )
-                }
-              >
-                {Icon && <Icon/>} {capitalize(pathForLink)}
-              </a>
-            )
-          })}
-        </nav>
+        <IconsComponent paths={pathsAsArray} />
+        
+        <IconsComponent paths={bottomPathsAsArray} isBottom={true} />
       </aside>
     </main>
   )

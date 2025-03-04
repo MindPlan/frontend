@@ -2,76 +2,40 @@
 @use '../../styles/typography';
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
+  //justify-content: space-between;
+
   width: 260px;
   height: 100vh;
   padding: 32px 16px 24px;
 
+
   background-color: colors.$COLOR_BACKGROUND;
-}
 
-.navigation {
-  display: flex;
-  flex-direction: column;
-
-  &__link {
+  &__logo-block {
     display: flex;
-    gap: 16px;
     align-items: center;
+    gap: 14px;
 
-    border-radius: 8px;
-    border: 1px solid transparent;
+    margin-bottom: 80px;
 
-    background-color: transparent;
-    padding: 16px 8px;
+    p {
+      color: colors.$COLOR_GRAY_100;
 
-    text-decoration: none;
-    color: colors.$COLOR_GRAY_100;
-
-    @include typography.typography(
-      typography.$FONT_SIZE_BODY,
-      typography.$FONT_WEIGHT_MEDIUM,
-      typography.$LINE_HEIGHT_TINY,
-    );
-
-    svg > path {
-      transition:
-        fill 0.3s ease-in,
-        stroke 0.3s ease-in;
+      @include typography.typography(
+        typography.$FONT_SIZE_SUBTITLE_SMALL,
+        typography.$FONT_WEIGHT_MEDIUM,
+        typography.$LINE_HEIGHT_PRIMARY,
+      );
     }
+  }
 
-    &--change-fill svg > path {
-      fill: colors.$COLOR_GRAY_60;
-    }
+  .navigation--middle {
+    flex: 1;
+  }
 
-    &--change-stroke svg > path {
-      stroke: colors.$COLOR_GRAY_60;
-    }
-
-    &--active {
-      background-color: colors.$COLOR_GRAY_0;
-      border-color: colors.$COLOR_GRAY_30;
-    }
-
-    transition:
-      background-color 0.3s ease-in,
-      color 0.3s ease-in,
-      border-color 0.3s ease-in,
-      box-shadow 0.3s ease-in;
-
-    &:hover {
-      background-color: colors.$COLOR_GRAY_100;
-      color: colors.$COLOR_GRAY_0;
-      border-color: colors.$COLOR_GRAY_100;
-
-      &.navigation__link--change-fill svg > path {
-        fill: colors.$COLOR_GRAY_0;
-      }
-
-      &.navigation__link--change-stroke svg > path {
-        stroke: colors.$COLOR_GRAY_0;
-      }
-
-      box-shadow: 1px 6px 17px 0 rgba(20, 20, 20, 0.5);
-    }
+  .navigation--bottom {
+    margin-top: auto;
   }
 }
