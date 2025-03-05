@@ -1,8 +1,8 @@
 import type { IHttpClient } from './types';
 import type { IHttpConfig, IMap, IResponse } from './types';
 
-// const SERVER_URL = import.meta.env.VITE_BACKEND_URL;
-const SERVER_URL = 'https://backend.com';
+const SERVER_URL = import.meta.env.VITE_BACKEND_URL;
+// const SERVER_URL = 'https://backend.com';
 
 export class HttpService {
   constructor(
@@ -49,8 +49,6 @@ export class HttpService {
     data: TD,
     config?: IHttpConfig,
   ): Promise<T> {
-    console.log('http service. post method');
-
     return this.fetchingService
       .post<IResponse<T>, TD>(this.getFullApiUrl(url), data, {
         ...config,

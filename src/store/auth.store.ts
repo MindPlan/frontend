@@ -4,8 +4,6 @@ import { persist } from 'zustand/middleware';
 interface AuthState {
 	accessToken: string | null;
 	refreshToken: string | null;
-	setAccessToken: (accessToken: string | null) => void;
-	setRefreshToken: (refreshToken: string | null) => void;
 	clearTokens: () => void;
 	isAuthenticated: boolean;
 	login: (accessToken: string, refreshToken: string) => void;
@@ -17,8 +15,6 @@ const useAuthStore = create<AuthState>()(
     (set) => ({
       accessToken: null,
       refreshToken: null,
-      setAccessToken: (accessToken) => set({ accessToken }),
-      setRefreshToken: (refreshToken) => set({ refreshToken }),
       clearTokens: () => set({ accessToken: null, refreshToken: null }),
       isAuthenticated: false,
       login: (accessToken, refreshToken) =>
