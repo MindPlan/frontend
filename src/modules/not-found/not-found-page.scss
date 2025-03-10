@@ -13,23 +13,74 @@
   &__content-container {
     width: 100%;
     max-width: 845px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   &__title {
+    @include typography.typography(
+      400px,
+      typography.$FONT_WEIGHT_MEDIUM,
+      80%,
+      0
+    );
+    color: colors.$COLOR_GRAY_100;
+    margin-bottom: 8px;
   }
 
   &__subtitle {
+    @include typography.typography(
+      typography.$FONT_SIZE_SUBTITLE_LARGE,
+      typography.$FONT_WEIGHT_MEDIUM,
+      typography.$LINE_HEIGHT_MIDDLE,
+      typography.$LETTER_SPACING_PRIMARY
+    );
+    color: colors.$COLOR_BLACK;
+    margin-bottom: 8px;
   }
 
-  &__subtitleExpl {
+  &__subtitle-explanation {
+    @include typography.typography(
+      typography.$FONT_SIZE_BODY,
+      typography.$FONT_WEIGHT_MEDIUM,
+      typography.$LINE_HEIGHT_GIANT,
+      typography.$LETTER_SPACING_PRIMARY
+    );
+    color: colors.$COLOR_GRAY_60;
+    margin-bottom: 27px;
   }
 
-  &__tryText {
+  &__try-text {
+    @include typography.typography(
+      typography.$FONT_SIZE_SUBTITLE_LARGE,
+      typography.$FONT_WEIGHT_MEDIUM,
+      typography.$LINE_HEIGHT_MIDDLE,
+      typography.$LETTER_SPACING_PRIMARY
+    );
+    color: colors.$COLOR_BLACK;
+    margin-bottom: 24px;
   }
 
   &__instruction {
+    @include typography.typography(
+      typography.$FONT_SIZE_BODY,
+      typography.$FONT_WEIGHT_MEDIUM,
+      typography.$LINE_HEIGHT_GIANT,
+      typography.$LETTER_SPACING_PRIMARY
+    );
+    color: colors.$COLOR_GRAY_60;
+    margin-bottom: 8px;
   }
 
   &__link {
+    @include typography.typography(
+      typography.$FONT_SIZE_PRIMARY,
+      typography.$FONT_WEIGHT_MEDIUM,
+      typography.$LINE_HEIGHT_PRIMARY,
+      typography.$LETTER_SPACING_PRIMARY
+    );
+    color: colors.$COLOR_BLUE_PRIMARY;
+    cursor: pointer;
   }
 }
