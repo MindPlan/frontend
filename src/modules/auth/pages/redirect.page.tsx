@@ -1,13 +1,4 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
-import useAuthStore from "~store/auth.store";
+import React from 'react';
+import { Navigate } from 'react-router-dom';
 
-export const RedirectPage = () => {
-  const {isAuthenticated} = useAuthStore();
-  
-  if (isAuthenticated) {
-    return <Navigate to="/dashboard" replace/>;
-  }
-  
-  return <Navigate to="/" replace/>
-}
+export const RedirectPage = () => <Navigate to="/not-found" replace />;

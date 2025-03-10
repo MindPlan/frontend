@@ -1,5 +1,5 @@
-@use '~shared/styles/colors.scss' as colors;
-@use '~shared/styles/typography.scss' as typography;
+@use '../../shared/styles/typography.scss' as typography;
+@use '../../shared/styles/colors.scss' as colors;
 
 .not-found {
   position: relative;

@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { NotFoundData } from './utils/not-found.data';
+import useAuthStore from '~store/auth.store.ts';
+
 import { AnimatedImage } from './animations/animated-image.component';
 import textureSrc from '~assets/animation-images/not-found-animation.png';
+
 import './not-found-page.scss';
 import './animations/not-found-animation.scss';
 
 const NotFoundPage: React.FC = () => {
+  const { isAuthenticated } = useAuthStore();
+  
   return (
     <div className='not-found not-found__container'>
       <div
@@ -30,31 +34,29 @@ const NotFoundPage: React.FC = () => {
       </div>
 
       <div className='not-found__content-container'>
-        <h2 className='not-found__title'>{NotFoundData.title}</h2>
+        <h2 className='not-found__title'>404</h2>
 
-        <h3 className='not-found__subtitle'>{NotFoundData.subtitle}</h3>
+        <h3 className='not-found__subtitle'>Oops! Looks like you're lost.</h3>
 
         <p className='not-found__subtitle-explanation'>
-          {NotFoundData.subtitleExpl}
+          The page you’re looking for does not exist or has been removed.
         </p>
 
         <div className='not-found__instructions-container'>
-          <h4 className='not-found__try-text'>{NotFoundData.tryText}</h4>
+          <h4 className='not-found__try-text'>Try this:</h4>
 
           <ul className='not-found__instructions'>
-            {NotFoundData.instructions.map((instruction, index) => (
-              <li
-                key={`instruction-${index}`}
-                className='not-found__instruction'
-              >
-                {instruction.text}
-                {instruction.link && (
-                  <Link to='/dashboard' className='not-found__link'>
-                    {instruction.link}
-                  </Link>
-                )}
-              </li>
-            ))}
+            <li className='not-found__instruction'>Check the URL</li>
+            
+            <li className='not-found__instruction'>Use the search bar</li>
+            
+            <li className='not-found__instruction'>
+              Go back to the
+              
+              <Link to={isAuthenticated ? '/dashboard' : '/login'} className='not-found__link'>
+                {isAuthenticated ? 'Dashboard' : 'Login'}
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
