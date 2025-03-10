@@ -2,6 +2,9 @@
 @use '~shared/styles/typography.scss' as typography;
 
 .not-found {
+  position: relative;
+  overflow: hidden;
+
   &__container {
     display: flex;
     align-items: center;
@@ -19,68 +22,64 @@
   }
 
   &__title {
-    @include typography.typography(
-      400px,
-      typography.$FONT_WEIGHT_MEDIUM,
-      80%,
-      0
-    );
+    font-size: 400px;
+    font-weight: 500;
+    line-height: 80%;
     color: colors.$COLOR_GRAY_100;
     margin-bottom: 8px;
+
+    @media screen and (max-width: 1400px) {
+      font-size: 250px;
+    }
   }
 
   &__subtitle {
-    @include typography.typography(
-      typography.$FONT_SIZE_SUBTITLE_LARGE,
-      typography.$FONT_WEIGHT_MEDIUM,
-      typography.$LINE_HEIGHT_MIDDLE,
-      typography.$LETTER_SPACING_PRIMARY
-    );
+    @include typography.subtitle();
     color: colors.$COLOR_BLACK;
     margin-bottom: 8px;
   }
 
   &__subtitle-explanation {
-    @include typography.typography(
-      typography.$FONT_SIZE_BODY,
-      typography.$FONT_WEIGHT_MEDIUM,
-      typography.$LINE_HEIGHT_GIANT,
-      typography.$LETTER_SPACING_PRIMARY
-    );
+    @include typography.bodyText();
     color: colors.$COLOR_GRAY_60;
     margin-bottom: 27px;
   }
 
   &__try-text {
-    @include typography.typography(
-      typography.$FONT_SIZE_SUBTITLE_LARGE,
-      typography.$FONT_WEIGHT_MEDIUM,
-      typography.$LINE_HEIGHT_MIDDLE,
-      typography.$LETTER_SPACING_PRIMARY
-    );
+    @include typography.subtitle();
     color: colors.$COLOR_BLACK;
     margin-bottom: 24px;
+    text-align: center;
+  }
+
+  &__instructions {
+    list-style-type: none;
+    padding-left: 20px;
   }
 
   &__instruction {
-    @include typography.typography(
-      typography.$FONT_SIZE_BODY,
-      typography.$FONT_WEIGHT_MEDIUM,
-      typography.$LINE_HEIGHT_GIANT,
-      typography.$LETTER_SPACING_PRIMARY
-    );
+    display: flex;
+    align-items: center;
+    @include typography.bodyText();
     color: colors.$COLOR_GRAY_60;
     margin-bottom: 8px;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      background-color: colors.$COLOR_GRAY_60;
+      margin-right: 12px;
+    }
   }
 
   &__link {
-    @include typography.typography(
-      typography.$FONT_SIZE_PRIMARY,
-      typography.$FONT_WEIGHT_MEDIUM,
-      typography.$LINE_HEIGHT_PRIMARY,
-      typography.$LETTER_SPACING_PRIMARY
-    );
+    text-decoration: none;
+    display: inline-block;
+    @include typography.secondary();
     color: colors.$COLOR_BLUE_PRIMARY;
     cursor: pointer;
+    margin-left: 4px;
   }
 }

@@ -9,7 +9,8 @@ export interface NotFoundDataTypes {
 export const NotFoundData: NotFoundDataTypes = {
   title: '404',
   subtitle: "Oops! Looks like you're lost.",
-  subtitleExpl: 'The page you’re looking for doesn’t exist or has been moved.',
+  subtitleExpl:
+    'The page you’re looking for doesn’t exist or has been removed.',
   tryText: 'Try this:',
   instructions: [
     { text: 'Check the URL' },
