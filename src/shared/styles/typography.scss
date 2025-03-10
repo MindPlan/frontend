@@ -71,104 +71,104 @@ $LETTER_SPACING_SECONDARY: -0.5px;
 
 @mixin titleHero {
   font-family: $FONT_FAMILY;
-  font-size: $FONT_SIZE_TITLE_1;
-  font-weight: $FONT_WEIGHT_MEDIUM;
-  line-height: $LINE_HEIGHT_MIDDLE;
-  letter-spacing: $LETTER_SPACING_PRIMARY;
+  font-size: 120px;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0;
 }
 
 @mixin title2 {
   font-family: $FONT_FAMILY;
-  font-size: $FONT_SIZE_TITLE_2;
-  font-weight: $FONT_WEIGHT_MEDIUM;
-  line-height: $LINE_HEIGHT_LARGE;
-  letter-spacing: $LETTER_SPACING_SECONDARY;
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 108%;
+  letter-spacing: -0.5px;
 }
 
 @mixin title3 {
   font-family: $FONT_FAMILY;
-  font-size: $FONT_SIZE_TITLE_3;
-  font-weight: $FONT_WEIGHT_MEDIUM;
-  line-height: $LINE_HEIGHT_MIDDLE;
-  letter-spacing: $LETTER_SPACING_PRIMARY;
+  font-size: 56px;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0;
 }
 
 @mixin title4 {
   font-family: $FONT_FAMILY;
-  font-size: $FONT_SIZE_TITLE_4;
-  font-weight: $FONT_WEIGHT_BOOK;
-  line-height: $LINE_HEIGHT_SMALL;
-  letter-spacing: $LETTER_SPACING_PRIMARY;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: 0;
 }
 
 @mixin subtitle {
   font-family: $FONT_FAMILY;
-  font-size: $FONT_SIZE_SUBTITLE_LARGE;
-  font-weight: $FONT_WEIGHT_MEDIUM;
-  line-height: $LINE_HEIGHT_MIDDLE;
-  letter-spacing: $LETTER_SPACING_PRIMARY;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0;
 }
 
 @mixin subtitle2 {
   font-family: $FONT_FAMILY;
-  font-size: $FONT_SIZE_SUBTITLE_SMALL;
-  font-weight: $FONT_WEIGHT_MEDIUM;
-  line-height: $LINE_HEIGHT_PRIMARY;
-  letter-spacing: $LETTER_SPACING_PRIMARY;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0;
 }
 
 @mixin subtitle3 {
   font-family: $FONT_FAMILY;
-  font-size: $FONT_SIZE_SUBTITLE_SMALL;
-  font-weight: $FONT_WEIGHT_BOLD;
-  line-height: $LINE_HEIGHT_PRIMARY;
-  letter-spacing: $LETTER_SPACING_PRIMARY;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 140%;
+  letter-spacing: 0;
 }
 
 @mixin subheading {
   font-family: $FONT_FAMILY;
-  font-size: $FONT_SIZE_SUBTITLE_SMALL;
-  font-weight: $FONT_WEIGHT_BOOK;
-  line-height: $LINE_HEIGHT_PRIMARY;
-  letter-spacing: $LETTER_SPACING_PRIMARY;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 0;
 }
 
 @mixin bodyText {
   font-family: $FONT_FAMILY;
-  font-size: $FONT_SIZE_BODY;
-  font-weight: $FONT_WEIGHT_MEDIUM;
-  line-height: $LINE_HEIGHT_GIANT;
-  letter-spacing: $LETTER_SPACING_PRIMARY;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: 0;
 }
 
 @mixin buttonText {
   font-family: $FONT_FAMILY;
-  font-size: $FONT_SIZE_BODY;
-  font-weight: $FONT_WEIGHT_MEDIUM;
-  line-height: $LINE_HEIGHT_TINY;
-  letter-spacing: $LETTER_SPACING_PRIMARY;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0;
 }
 
 @mixin secondary {
   font-family: $FONT_FAMILY;
-  font-size: $FONT_SIZE_PRIMARY;
-  font-weight: $FONT_WEIGHT_MEDIUM;
-  line-height: $LINE_HEIGHT_PRIMARY;
-  letter-spacing: $LETTER_SPACING_PRIMARY;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0;
 }
 
 @mixin inputText {
   font-family: $FONT_FAMILY;
-  font-size: $FONT_SIZE_INPUT;
-  font-weight: $FONT_WEIGHT_REGULAR;
-  line-height: $LINE_HEIGHT_PRIMARY;
-  letter-spacing: $LETTER_SPACING_PRIMARY;
+  font-size: 14px;
+  font-weight: 450;
+  line-height: 140%;
+  letter-spacing: 0;
 }
 
 @mixin inputText2 {
   font-family: $FONT_FAMILY;
-  font-size: $FONT_SIZE_INPUT;
-  font-weight: $FONT_WEIGHT_MEDIUM;
-  line-height: $LINE_HEIGHT_PRIMARY;
-  letter-spacing: $LETTER_SPACING_PRIMARY;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0;
 }
