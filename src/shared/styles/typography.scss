@@ -1,6 +1,13 @@
 // Font connecting
 @font-face {
   font-family: 'PP Neue Montreal';
+  src: url('~fonts/NeueMontreal-Bold.otf') format('otf');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
   src: url('~fonts/PPNeueMontreal-Medium.otf') format('otf');
   font-weight: 500;
   font-style: normal;
@@ -20,7 +27,6 @@
   font-style: normal;
 }
 
-
 // Font Family
 $FONT_FAMILY: 'PP Neue Montreal', sans-serif;
 
@@ -39,6 +45,7 @@ $FONT_SIZE_TITLE_1: 120px;
 $FONT_WEIGHT_BOOK: 400;
 $FONT_WEIGHT_REGULAR: 450;
 $FONT_WEIGHT_MEDIUM: 500;
+$FONT_WEIGHT_BOLD: 800;
 
 // Line heights
 $LINE_HEIGHT_TINY: 20px;
@@ -53,15 +60,115 @@ $LETTER_SPACING_PRIMARY: 0;
 $LETTER_SPACING_SECONDARY: -0.5px;
 
 // typography mixins
-@mixin typography(
-  $size,
-  $weight,
-  $lineHeight,
-  $letterSpacing: 0
-) {
+// TODO - remove after code refactor
+@mixin typography($size, $weight, $lineHeight, $letterSpacing: 0) {
   font-family: $FONT_FAMILY;
   font-size: $size;
   font-weight: $weight;
   line-height: $lineHeight;
   letter-spacing: $letterSpacing;
+}
+
+@mixin titleHero {
+  font-family: $FONT_FAMILY;
+  font-size: $FONT_SIZE_TITLE_1;
+  font-weight: $FONT_WEIGHT_MEDIUM;
+  line-height: $LINE_HEIGHT_MIDDLE;
+  letter-spacing: $LETTER_SPACING_PRIMARY;
+}
+
+@mixin title2 {
+  font-family: $FONT_FAMILY;
+  font-size: $FONT_SIZE_TITLE_2;
+  font-weight: $FONT_WEIGHT_MEDIUM;
+  line-height: $LINE_HEIGHT_LARGE;
+  letter-spacing: $LETTER_SPACING_SECONDARY;
+}
+
+@mixin title3 {
+  font-family: $FONT_FAMILY;
+  font-size: $FONT_SIZE_TITLE_3;
+  font-weight: $FONT_WEIGHT_MEDIUM;
+  line-height: $LINE_HEIGHT_MIDDLE;
+  letter-spacing: $LETTER_SPACING_PRIMARY;
+}
+
+@mixin title4 {
+  font-family: $FONT_FAMILY;
+  font-size: $FONT_SIZE_TITLE_4;
+  font-weight: $FONT_WEIGHT_BOOK;
+  line-height: $LINE_HEIGHT_SMALL;
+  letter-spacing: $LETTER_SPACING_PRIMARY;
+}
+
+@mixin subtitle {
+  font-family: $FONT_FAMILY;
+  font-size: $FONT_SIZE_SUBTITLE_LARGE;
+  font-weight: $FONT_WEIGHT_MEDIUM;
+  line-height: $LINE_HEIGHT_MIDDLE;
+  letter-spacing: $LETTER_SPACING_PRIMARY;
+}
+
+@mixin subtitle2 {
+  font-family: $FONT_FAMILY;
+  font-size: $FONT_SIZE_SUBTITLE_SMALL;
+  font-weight: $FONT_WEIGHT_MEDIUM;
+  line-height: $LINE_HEIGHT_PRIMARY;
+  letter-spacing: $LETTER_SPACING_PRIMARY;
+}
+
+@mixin subtitle3 {
+  font-family: $FONT_FAMILY;
+  font-size: $FONT_SIZE_SUBTITLE_SMALL;
+  font-weight: $FONT_WEIGHT_BOLD;
+  line-height: $LINE_HEIGHT_PRIMARY;
+  letter-spacing: $LETTER_SPACING_PRIMARY;
+}
+
+@mixin subheading {
+  font-family: $FONT_FAMILY;
+  font-size: $FONT_SIZE_SUBTITLE_SMALL;
+  font-weight: $FONT_WEIGHT_BOOK;
+  line-height: $LINE_HEIGHT_PRIMARY;
+  letter-spacing: $LETTER_SPACING_PRIMARY;
+}
+
+@mixin bodyText {
+  font-family: $FONT_FAMILY;
+  font-size: $FONT_SIZE_BODY;
+  font-weight: $FONT_WEIGHT_MEDIUM;
+  line-height: $LINE_HEIGHT_GIANT;
+  letter-spacing: $LETTER_SPACING_PRIMARY;
+}
+
+@mixin buttonText {
+  font-family: $FONT_FAMILY;
+  font-size: $FONT_SIZE_BODY;
+  font-weight: $FONT_WEIGHT_MEDIUM;
+  line-height: $LINE_HEIGHT_TINY;
+  letter-spacing: $LETTER_SPACING_PRIMARY;
+}
+
+@mixin secondary {
+  font-family: $FONT_FAMILY;
+  font-size: $FONT_SIZE_PRIMARY;
+  font-weight: $FONT_WEIGHT_MEDIUM;
+  line-height: $LINE_HEIGHT_PRIMARY;
+  letter-spacing: $LETTER_SPACING_PRIMARY;
+}
+
+@mixin inputText {
+  font-family: $FONT_FAMILY;
+  font-size: $FONT_SIZE_INPUT;
+  font-weight: $FONT_WEIGHT_REGULAR;
+  line-height: $LINE_HEIGHT_PRIMARY;
+  letter-spacing: $LETTER_SPACING_PRIMARY;
+}
+
+@mixin inputText2 {
+  font-family: $FONT_FAMILY;
+  font-size: $FONT_SIZE_INPUT;
+  font-weight: $FONT_WEIGHT_MEDIUM;
+  line-height: $LINE_HEIGHT_PRIMARY;
+  letter-spacing: $LETTER_SPACING_PRIMARY;
 }
