@@ -1,0 +1,35 @@
+@use '~shared/styles/colors.scss' as colors;
+@use '~shared/styles/typography.scss' as typography;
+
+.not-found {
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+  }
+
+  &__content-container {
+    width: 100%;
+    max-width: 845px;
+  }
+
+  &__title {
+  }
+
+  &__subtitle {
+  }
+
+  &__subtitleExpl {
+  }
+
+  &__tryText {
+  }
+
+  &__instruction {
+  }
+
+  &__link {
+  }
+}
