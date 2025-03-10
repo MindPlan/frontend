@@ -1,0 +1,38 @@
+@use '../../../../shared/styles/colors';
+@use '../../../../shared/styles/typography';
+
+.sub-page-toggler {
+  margin-top: 40px;
+
+  display: flex;
+  gap: 16px;
+
+  &__button {
+    padding: 11px 16px;
+    background: transparent;
+    border: 1px solid colors.$COLOR_GRAY_30;
+    color: colors.$COLOR_GRAY_40;
+
+    border-radius: 8px;
+    cursor: pointer;
+
+    @include typography.typography(
+      typography.$FONT_SIZE_BODY,
+      typography.$FONT_WEIGHT_MEDIUM,
+      20px,
+    );
+
+    transition:
+      color 0.3s ease-in-out,
+      background-color 0.3s ease-in-out,
+      border-color 0.3s ease-in-out,
+      box-shadow 0.3s ease-in-out;
+
+    &--active {
+      color: colors.$COLOR_GRAY_100;
+      background-color: colors.$COLOR_GRAY_20;
+      border-color: colors.$COLOR_GRAY_60;
+      box-shadow: 0 0 0 1px colors.$COLOR_GRAY_60;
+    }
+  }
+}

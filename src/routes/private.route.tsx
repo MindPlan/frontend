@@ -18,7 +18,7 @@ export const PrivateRoutes = () => (
     <Route path="/calendar" element={<CalendarPage />} />
     <Route path="/goals" element={<GoalsPage />} />
     <Route path="/projects" element={<ProjectsPage />} />
-    <Route path="/settings" element={<SettingsPage />} />
+    {/*<Route path="/settings" element={<SettingsPage />} />*/}
     
     <Route path="*" element={<RedirectPage/>}/>
   </Routes>

@@ -9,19 +9,17 @@ const Sidebar: FC = () => {
   const { pathsAsArray, bottomPathsAsArray } = useSidebarRoutingKeys();
   
   return (
-    <main className="dashboard">
-      <aside className="dashboard__sidebar sidebar">
-        <div className="sidebar__logo-block">
-          <img src={srcToLogoPNG} alt="MindPlan Logo"/>
-          
-          <p>MindPlan</p>
-        </div>
+    <aside className="dashboard__sidebar sidebar">
+      <div className="sidebar__logo-block">
+        <img src={srcToLogoPNG} alt="MindPlan Logo"/>
         
-        <IconsComponent paths={pathsAsArray} />
-        
-        <IconsComponent paths={bottomPathsAsArray} isBottom={true} />
-      </aside>
-    </main>
+        <p>MindPlan</p>
+      </div>
+      
+      <IconsComponent paths={pathsAsArray} />
+      
+      <IconsComponent paths={bottomPathsAsArray} isBottom={true} />
+    </aside>
   )
 }
 
