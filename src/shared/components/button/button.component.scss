@@ -19,12 +19,12 @@
     typography.$FONT_SIZE_PRIMARY,
     typography.$FONT_WEIGHT_MEDIUM,
     typography.$LINE_HEIGHT_MIDDLE,
-    0,
+    0
   );
 
-  transition:
-          box-shadow 0.2s ease-in-out,
-          border-color 0.2s ease-in-out;
+  cursor: pointer;
+
+  transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
 
   & > svg {
     width: 16px;

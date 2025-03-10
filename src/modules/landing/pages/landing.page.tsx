@@ -7,6 +7,7 @@ import Logo from '~assets/svg/logo.svg';
 import ProgressBar from '../components/progress.bar';
 import styles from './landing-page.module.scss';
 import './../animations/landing-animation.scss';
+import { Button } from '~shared/components/button';
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const LandingPage: React.FC = () => {
       setIndex(index + 1);
       setProgress(progress + 1);
     } else {
-      goToLogin();
+      goToRegister();
     }
   };
 
@@ -73,8 +74,10 @@ const LandingPage: React.FC = () => {
           <Logo />
         </div>
 
-        <div className={styles.skipButton} onClick={goToRegister}>
-          Button
+        <div className={styles.skipButton}>
+          <Button belongsTo='landing-page' isSecondary callback={goToRegister}>
+            Skip
+          </Button>
         </div>
       </header>
 
@@ -89,16 +92,22 @@ const LandingPage: React.FC = () => {
           <div className={styles.text}>
             <h1 className={styles.title}>{currentInfo.title}</h1>
 
-            <p className={`${styles.description} ${index === 0 || index === 2 ? styles.wide : ''}`}>{currentInfo.description}</p>
+            <p
+              className={`${styles.description} ${
+                index === 0 || index === 2 ? styles.wide : ''
+              }`}
+            >
+              {currentInfo.description}
+            </p>
           </div>
         </motion.div>
 
         <ProgressBar percentage={progress} />
 
         <div className={styles.btnContainer}>
-          <button className={styles.continueBtnContainer} onClick={handleClick}>
+          <Button belongsTo='landing-page' callback={handleClick}>
             {currentInfo.btnText}
-          </button>
+          </Button>
         </div>
       </section>
 
