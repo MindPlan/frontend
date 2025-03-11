@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { landingPageInfos } from '~modules/auth/utils/landing.page.data';
 import { useNavigate } from 'react-router-dom';
+import { landingPageInfos } from '~modules/auth/utils/landing.page.data';
 import '../animations/landing-animation';
 import Logo from '~assets/svg/logo.svg';
 import ProgressBar from '../components/progress.bar';
@@ -61,10 +61,6 @@ const LandingPage: React.FC = () => {
     navigate('/registration');
   };
 
-  const goToLogin = () => {
-    navigate('/login');
-  };
-
   const currentInfo = landingPageInfos[index];
 
   return (
@@ -74,11 +70,17 @@ const LandingPage: React.FC = () => {
           <Logo />
         </div>
 
-        <div className={styles.skipButton}>
-          <Button belongsTo='landing-page' isSecondary callback={goToRegister}>
-            Skip
-          </Button>
-        </div>
+        {index !== 2 && (
+          <div className={styles.skipButton}>
+            <Button
+              belongsTo='landing-page'
+              isSecondary
+              callback={goToRegister}
+            >
+              Skip
+            </Button>
+          </div>
+        )}
       </header>
 
       <section className={styles.textContainer}>
@@ -92,13 +94,7 @@ const LandingPage: React.FC = () => {
           <div className={styles.text}>
             <h1 className={styles.title}>{currentInfo.title}</h1>
 
-            <p
-              className={`${styles.description} ${
-                index === 0 || index === 2 ? styles.wide : ''
-              }`}
-            >
-              {currentInfo.description}
-            </p>
+            <p className={styles.description}>{currentInfo.description}</p>
           </div>
         </motion.div>
 
