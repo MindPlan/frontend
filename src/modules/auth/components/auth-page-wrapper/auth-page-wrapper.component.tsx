@@ -42,7 +42,7 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({
   };
   
   const onSuccessLoginAuth = async (googleResponse: CredentialResponse) => {
-    const response = await authService.sendGoogleJWT(googleResponse);
+    const response = await authService.sendGoogleJWT(googleResponse.credential);
     // Yes, 'access_token', not accessToken
     login(response['access_token'], response['refresh_token']);
   }
