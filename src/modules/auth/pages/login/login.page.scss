@@ -1,0 +1,30 @@
+.login {
+  &__container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__animation-container {
+    width: 50%;
+    height: 100vh;
+    position: relative;
+    background-color: black;
+  }
+
+  .animation-container {
+    &__text-container {
+      position: absolute;
+      width: 100%;
+      max-width: 628px;
+      text-align: center;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 146px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+}

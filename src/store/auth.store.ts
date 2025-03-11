@@ -17,18 +17,24 @@ const useAuthStore = create<AuthState>()(
       refreshToken: null,
       clearTokens: () => set({ accessToken: null, refreshToken: null }),
       isAuthenticated: false,
-      login: (accessToken, refreshToken) =>
+      login: (accessToken, refreshToken) => {
         set({
           accessToken,
           refreshToken,
           isAuthenticated: true,
-        }),
-      logout: () =>
+        })
+        
+        window.location.replace('/dashboard');
+      },
+      logout: () => {
         set({
           accessToken: null,
           refreshToken: null,
           isAuthenticated: false,
-        }),
+        })
+        
+        window.location.replace('/login');
+      },
     }),
     {
       name: 'auth-storage',

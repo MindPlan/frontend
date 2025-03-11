@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import './auth-page-wrapper.scss';
 
@@ -11,6 +11,7 @@ import useAuthStore from "~store/auth.store.ts";
 
 import { AppleIcon, ArrowBackIcon } from '~assets/svg/index';
 import Logo from '~assets/svg/logo.svg';
+import {useLocation} from "react-router";
 
 interface AuthPageWrapperProps {
   children: ReactNode;
@@ -24,6 +25,7 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({
   userEmail,
 }) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [showInput, setShowInput] = useState<boolean>(false);
   const { login } = useAuthStore();
 
@@ -40,7 +42,7 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({
   };
   
   const onSuccessLoginAuth = async (googleResponse: CredentialResponse) => {
-    const response = await authService.sendGoogleJWT(googleResponse.credential);
+    const response = await authService.sendGoogleJWT(googleResponse);
     // Yes, 'access_token', not accessToken
     login(response['access_token'], response['refresh_token']);
   }
@@ -133,13 +135,26 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({
         
         <div>{children}</div>
         
-        <div className='auth__login-text'>
-          Already have an account?{' '}
-          
-          <span onClick={goToLoginPage} className='auth__login'>
-            Log in
-          </span>
-        </div>
+        {pathname === '/registration' && (
+          <div className='auth__login-text'>
+            Already have an account?{' '}
+            
+            <span onClick={goToLoginPage} className='auth__login'>
+              Log in
+            </span>
+          </div>
+        )}
+        
+        {pathname === '/login' && (
+          <div className='auth__login-text'>
+            Dont't have an account?{' '}
+            
+            <Link to="/registration" className='auth__login'>
+              Sign up
+            </Link>
+          </div>
+        )}
+      
       </div>
     </div>
   );

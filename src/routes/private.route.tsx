@@ -9,6 +9,7 @@ import CalendarPage from '~modules/calendar/page/calendar.page.tsx';
 import GoalsPage from '~modules/goals/page/goals.page.tsx';
 import ProjectsPage from '~modules/projects/page/projects.page.tsx';
 import SettingsPage from '~modules/settings/page/settings.page.tsx';
+import NotFoundPage from '../modules/not-found/not-found.page.tsx';
 
 export const PrivateRoutes = () => (
   <Routes>
@@ -19,7 +20,8 @@ export const PrivateRoutes = () => (
     <Route path="/goals" element={<GoalsPage />} />
     <Route path="/projects" element={<ProjectsPage />} />
     <Route path="/settings" element={<SettingsPage />} />
-    
-    <Route path="*" element={<RedirectPage/>}/>
+    <Route path='/not-found' element={<NotFoundPage />} />
+  
+    <Route path='*' element={<RedirectPage />} />
   </Routes>
 )

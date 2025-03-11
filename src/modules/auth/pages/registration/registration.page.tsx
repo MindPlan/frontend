@@ -5,13 +5,13 @@ import './registration.scss';
 import '~modules/auth/animations/registration/registration-animation.scss';
 import TitleAnimation from '../../components/titles/title-animation/title-animation.component';
 import SubtitleAnimation from '../../components/subtitles/subtitle-animation/subtitle-animation.component';
-import { SignUpForm } from '~/modules/auth/components/forms/sign-up-form.component';
+import { SignUpForm } from '~/modules/auth/components/forms/sign-up/sign-up-form.component';
 import { AuthInfos } from '~modules/auth/utils/auth.data';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const RegistrationPage = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [userEmail, setUserEmail] = useState('');
+  const [userEmail, setUserEmail] = useState(''); // move to store
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -39,11 +39,13 @@ const RegistrationPage = () => {
           />
         )}
       </AuthPageWrapper>
+      
       <div className='registration__animation-container animation-container'>
         <div
           className='registration-animation'
           id='registration-animation-container'
-        ></div>
+        />
+        
         <div className='animation-container__text-container'>
           <AnimatePresence mode='wait'>
             <motion.div
