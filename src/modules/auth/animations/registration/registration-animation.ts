@@ -55,7 +55,7 @@ export function initRegistrationAnimation(): () => void {
         const blue = imageData[index + 2];
         const alpha = imageData[index + 3];
         const targetX = x - canvas.width / 2;
-        const targetY = -(y - canvas.height / 2);
+        const targetY = canvas.height / 2 - y - 50;
         const targetZ = 0;
 
         if (alpha > alphaThreshold) {
@@ -80,7 +80,7 @@ export function initRegistrationAnimation(): () => void {
     );
     geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
 
-    const material = new THREE.PointsMaterial({ size: 4, vertexColors: true });
+    const material = new THREE.PointsMaterial({ size: 7, vertexColors: true });
     const particles = new THREE.Points(geometry, material);
     scene.add(particles);
 
@@ -112,7 +112,10 @@ export function initRegistrationAnimation(): () => void {
           const y = currentPositions[i + 1];
           const z = currentPositions[i + 2];
 
-          const scaleFactor = scales[i / 3] + Math.sin(time + i * 0.5) * 0.1;
+          const scaleFactor = Math.max(
+            scales[i / 3] + Math.sin(time + i * 0.5) * 0.1,
+            1
+          );
           currentPositions[i] =
             x + Math.sin(time + i) * randomOffsets[i / 3] * 0.2;
           currentPositions[i + 1] =

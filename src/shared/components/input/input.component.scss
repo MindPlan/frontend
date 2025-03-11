@@ -35,6 +35,10 @@
     .input {
       border: 1px solid colors.$COLOR_GRAY_40;
       color: colors.$COLOR_GRAY_80;
+
+      &--error {
+        border-width: 2px;
+      }
     }
   }
 
@@ -47,6 +51,15 @@
       outline-color: colors.$COLOR_BLUE_PRIMARY;
       border-color: colors.$COLOR_BLUE_PRIMARY;
       color: colors.$COLOR_GRAY_80;
+
+      &--error {
+        outline: none;
+        border-color: colors.$COLOR_SYSTEM_RED_PRIMARY;
+
+        &:hover {
+          border-width: 2px;
+        }
+      }
     }
   }
 
@@ -55,14 +68,13 @@
   }
 
   &--error {
-    pointer-events: none;
-
     .input__icon > svg > path {
       stroke: colors.$COLOR_SYSTEM_RED_PRIMARY;
     }
 
     .input {
       border: 2px solid colors.$COLOR_SYSTEM_RED_PRIMARY;
+
       background-color: colors.$COLOR_SYSTEM_RED_SECONDARY;
       color: colors.$COLOR_SYSTEM_RED_PRIMARY
     }
@@ -109,7 +121,7 @@
 
   @include typography.typography(
     typography.$FONT_SIZE_INPUT,
-    typography.$FONT_WEIGHT_REGULAR,
+    typography.$FONT_WEIGHT_BOOK,
     typography.$LINE_HEIGHT_PRIMARY,
   );
 

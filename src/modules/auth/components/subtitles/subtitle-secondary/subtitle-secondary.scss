@@ -1,0 +1,12 @@
+@use '~shared/styles/colors.scss' as colors;
+@use '~shared/styles/typography.scss' as typography;
+
+.subtitle-secondary {
+  color: colors.$COLOR_GRAY_80;
+  @include typography.typography(
+    typography.$FONT_SIZE_SUBTITLE_SMALL,
+    typography.$FONT_WEIGHT_BOOK,
+    typography.$LINE_HEIGHT_PRIMARY,
+    typography.$LETTER_SPACING_PRIMARY
+  );
+}

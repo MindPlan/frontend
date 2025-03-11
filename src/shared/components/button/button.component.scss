@@ -14,6 +14,8 @@
   border: 2px solid colors.$COLOR_GRAY_100;
   border-radius: 4px;
 
+  cursor: pointer;
+
   color: colors.$COLOR_GRAY_0;
   @include typography.typography(
     typography.$FONT_SIZE_PRIMARY,
