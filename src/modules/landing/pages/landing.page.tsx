@@ -7,7 +7,7 @@ import Logo from '~assets/svg/logo.svg';
 import ProgressBar from '../components/progress.bar';
 import styles from './landing-page.module.scss';
 import './../animations/landing-animation.scss';
-import { Button } from '~shared/components/button';
+import Button from '~shared/components/button/button.component.tsx';
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
