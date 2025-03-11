@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import './button.component.scss';
-import classNames from "classnames";
+import classNames from 'classnames';
 
 interface ButtonProps {
   belongsTo: string;
@@ -27,20 +27,16 @@ export const Button: FC<ButtonProps> = ({
     `${belongsTo}__button`,
     'button',
     isSecondary && 'button--secondary',
-    small && 'button--small',
+    small && 'button--small'
   );
-  
+
   return (
-    <button
-      className={classes}
-      onClick={callback}
-      disabled={isDisabled}
-    >
-      <LeftIcon />
-      
+    <button className={classes} onClick={callback} disabled={isDisabled}>
+      {LeftIcon && <LeftIcon />}
+
       {children}
-      
-      <RightIcon />
+
+      {RightIcon && <RightIcon />}
     </button>
   );
-}
+};

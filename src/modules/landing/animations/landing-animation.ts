@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
     uniform float uTime;
     void main() {
       vec2 uv = vUv;
-      uv.x += sin(uTime + uv.y * 10.0) * 0.05;
+      uv.x += sin(uTime + uv.y * 10.0) * 0.04;
       vec4 texColor = texture2D(uTexture, uv);
       gl_FragColor = vec4(texColor.rgb, texColor.a);
     }`;
@@ -49,7 +49,7 @@ window.addEventListener('load', () => {
     textureSrc,
     (texture: THREE.Texture) => {
       const aspectRatio = texture.image.width / texture.image.height;
-      const geometry = new THREE.PlaneGeometry(1 * aspectRatio, 1);
+      const geometry = new THREE.PlaneGeometry(3 * aspectRatio, 3);
       const material = new THREE.ShaderMaterial({
         uniforms: {
           uTexture: { value: texture },
@@ -63,11 +63,12 @@ window.addEventListener('load', () => {
       const plane = new THREE.Mesh(geometry, material);
       scene.add(plane);
       camera.position.z = 1.5;
+      plane.scale.set(0.8, 0.8, 0.8);
 
       const animate = () => {
         requestAnimationFrame(animate);
         material.uniforms.uTime.value = performance.now() * 0.001;
-        plane.rotation.z -= 0.01;
+        plane.rotation.z -= 0.005;
         renderer.render(scene, camera);
       };
 
