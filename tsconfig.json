@@ -52,8 +52,29 @@
             "~routes/*": [
                 "src/routes/*"
             ],
+            "~dashboard/*": [
+                "src/modules/dashboard/*"
+            ],
             "~hooks/*": [
                 "src/shared/hooks/*"
+            ],
+            "~png/*": [
+                "src/assets/png/*"
+            ],
+            "~inbox/*": [
+                "src/modules/inbox/*"
+            ],
+            "~calendar/*": [
+                "src/modules/calendar/*"
+            ],
+            "~goals/*": [
+                "src/modules/goals/*"
+            ],
+            "~projects/*": [
+                "src/modules/projects/*"
+            ],
+            "~settings/*": [
+                "src/modules/settings/*"
             ]
         }
     }

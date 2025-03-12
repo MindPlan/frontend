@@ -1,3 +1,5 @@
+@use '~shared/styles/colors.scss' as colors;
+
 .sign-up-form {
   .input-field {
     margin-bottom: 8px;
@@ -9,5 +11,9 @@
 
   &__button {
     margin-top: 30px;
+  }
+
+  &__icon {
+    height: 24px;
   }
 }
