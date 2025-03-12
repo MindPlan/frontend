@@ -7,6 +7,7 @@ import RegistrationPage from '~modules/auth/pages/registration/registration.page
 import LoginPage from '~modules/auth/pages/login/login.page';
 import GooglePage from '~shared/dev/google-token-dev.page.tsx';
 import UIDevPage from '~shared/dev/ui-dev.page.tsx';
+import NotFoundPage from '~/modules/not-found/not-found.page.tsx';
 
 export const PublicRoutes = () => (
   <Routes>
@@ -16,7 +17,8 @@ export const PublicRoutes = () => (
     <Route path='/confirmation' element={<>Confirmation</>} />
     <Route path='/dev/get-google-token' element={<GooglePage />} />
     <Route path='/dev/ui' element={<UIDevPage />} />
-    
+    <Route path='/not-found' element={<NotFoundPage />} /> 
+
     <Route path='*' element={<RedirectPage />} />
   </Routes>
 );

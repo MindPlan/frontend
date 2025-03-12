@@ -1,7 +1,14 @@
 import React, { HTMLInputTypeAttribute } from 'react';
-import { Control, Controller, FieldValues, Path, PathValue, RegisterOptions } from 'react-hook-form';
+import {
+  Control,
+  Controller,
+  FieldValues,
+  Path,
+  PathValue,
+  RegisterOptions,
+} from 'react-hook-form';
 import './input.component.scss';
-import classNames from "classnames";
+import classNames from 'classnames';
 
 interface Props<T extends FieldValues> {
   belongsTo: string;
@@ -10,16 +17,15 @@ interface Props<T extends FieldValues> {
   type?: HTMLInputTypeAttribute;
   placeholder?: string;
   label?: string;
-  RightIcon?: string;
+  RightIcon?: string | JSX.Element;
   LeftIcon?: string;
   defaultValue?: PathValue<T, Path<T>>;
   error?: string;
-  success?: boolean,
+  success?: boolean;
   disabled?: boolean;
   rules?: RegisterOptions<T, Path<T>>;
   onClick?: () => void;
 }
-
 
 /**
  * @param {string} belongsTo - belongsTo="form" -> the input has a class 'form__input'
@@ -55,44 +61,41 @@ const Input = <T extends FieldValues>({
 }: Props<T>) => {
   return (
     <div
-      className={
-        classNames(
-          `${belongsTo}__input-field`,
-          'input-field',
-          disabled && 'input-field--disabled',
-          !!error?.length && 'input-field--error',
-          success && 'input-field--success'
-        )
-      }
+      className={classNames(
+        `${belongsTo}__input-field`,
+        'input-field',
+        disabled && 'input-field--disabled',
+        !!error?.length && 'input-field--error',
+        success && 'input-field--success'
+      )}
       onClick={onClick}
     >
       {label && (
-        <label
-          htmlFor={name}
-          className="label"
-        >
+        <label htmlFor={name} className='label'>
           {label}
         </label>
       )}
-      
+
       <Controller
         name={name}
         control={control}
         defaultValue={defaultValue}
         rules={rules}
-        render={({field}) => (
-          <div className="input-wrapper">
+        render={({ field }) => (
+          <div className='input-wrapper'>
             {LeftIcon && (
-              <div className={classNames(
-                'input__icon',
-                disabled && 'input__icon--disabled',
-                error?.length > 0 && 'input__icon--error',
-                success && 'input__icon--success'
-              )}>
+              <div
+                className={classNames(
+                  'input__icon',
+                  disabled && 'input__icon--disabled',
+                  error?.length > 0 && 'input__icon--error',
+                  success && 'input__icon--success'
+                )}
+              >
                 <LeftIcon />
               </div>
             )}
-            
+
             <input
               {...field}
               id={name}
@@ -107,28 +110,26 @@ const Input = <T extends FieldValues>({
                 success && 'input--success'
               )}
             />
-            
+
             {RightIcon && (
-              <div className={classNames(
-                'input__icon input__icon--right',
-                disabled && 'input__icon--disabled',
-                error?.length > 0 && 'input__icon--error',
-                success && 'input__icon--success'
-              )}>
-                <RightIcon />
+              <div
+                className={classNames(
+                  'input__icon input__icon--right',
+                  disabled && 'input__icon--disabled',
+                  error?.length > 0 && 'input__icon--error',
+                  success && 'input__icon--success'
+                )}
+              >
+                {RightIcon}
               </div>
             )}
           </div>
         )}
       />
-      
-      {error && (
-        <p className="error-message">
-          {error}
-        </p>
-      )}
+
+      {error && <p className='error-message'>{error}</p>}
     </div>
-  )
-}
+  );
+};
 
 export default Input;

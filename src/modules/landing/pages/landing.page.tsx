@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { landingPageInfos } from '~modules/auth/utils/landing.page.data';
 import { useNavigate } from 'react-router-dom';
+import { landingPageInfos } from '~modules/auth/utils/landing.page.data';
 import '../animations/landing-animation';
 import Logo from '~assets/svg/logo.svg';
 import ProgressBar from '../components/progress.bar';
 import styles from './landing-page.module.scss';
 import './../animations/landing-animation.scss';
+import Button from '~shared/components/button/button.component.tsx';
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const LandingPage: React.FC = () => {
       setIndex(index + 1);
       setProgress(progress + 1);
     } else {
-      goToLogin();
+      goToRegister();
     }
   };
 
@@ -60,10 +61,6 @@ const LandingPage: React.FC = () => {
     navigate('/registration');
   };
 
-  const goToLogin = () => {
-    navigate('/login');
-  };
-
   const currentInfo = landingPageInfos[index];
 
   return (
@@ -73,9 +70,17 @@ const LandingPage: React.FC = () => {
           <Logo />
         </div>
 
-        <div className={styles.skipButton} onClick={goToRegister}>
-          Button
-        </div>
+        {index !== 2 && (
+          <div className={styles.skipButton}>
+            <Button
+              belongsTo='landing-page'
+              isSecondary
+              callback={goToRegister}
+            >
+              Skip
+            </Button>
+          </div>
+        )}
       </header>
 
       <section className={styles.textContainer}>
@@ -102,9 +107,9 @@ const LandingPage: React.FC = () => {
         <ProgressBar percentage={progress} />
 
         <div className={styles.btnContainer}>
-          <button className={styles.continueBtnContainer} onClick={handleClick}>
+          <Button belongsTo='landing-page' callback={handleClick}>
             {currentInfo.btnText}
-          </button>
+          </Button>
         </div>
       </section>
 
