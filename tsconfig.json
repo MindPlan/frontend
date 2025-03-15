@@ -31,29 +31,80 @@
             "~modules/*": [
                 "src/modules/*"
             ],
-            "~utils/*": [
-                "src/shared/utils/*"
-            ],
-            "~services/*": [
-                "src/shared/services/*"
-            ],
-            "~auth/*": [
-                "src/modules/auth/*"
-            ],
-            "~fonts/*": [
-                "src/assets/fonts/*"
-            ],
-            "~tag/*": [
-                "src/modules/tag/*"
-            ],
             "~types/*": [
                 "src/types/*"
             ],
             "~routes/*": [
                 "src/routes/*"
             ],
+            "~fonts/*": [
+                "src/assets/fonts/*"
+            ],
+            "~icons/*": [
+                "src/assets/icons/*"
+            ],
+            "~png/*": [
+                "src/assets/png/*"
+            ],
+            "~svg/*": [
+                "src/assets/svg/*"
+            ],
+            "~animation-images/*": [
+                "src/assets/animation-images/*"
+            ],
+            "~calendar/*": [
+                "src/modules/calendar/*"
+            ],
+            "~auth/*": [
+                "src/modules/auth/*"
+            ],
+            "~dashboard/*": [
+                "src/modules/dashboard/*"
+            ],
+            "~goals/*": [
+                "src/modules/goals/*"
+            ],
+            "~groups/*": [
+                "src/modules/groups/*"
+            ],
+            "~not-found/*": [
+                "src/modules/not-found/*"
+            ],
+            "~projects/*": [
+                "src/modules/projects/*"
+            ],
+            "~inbox/*": [
+                "src/modules/inbox/*"
+            ],
+            "~settings/*": [
+                "src/modules/settings/*"
+            ],
+            "~tasks/*": [
+                "src/modules/tasks/*"
+            ],
+            "~landing/*": [
+                "src/modules/landing/*"
+            ],
+            "~tag/*": [
+                "src/modules/tag/*"
+            ],
+            "~components/*": [
+                "src/shared/components/*"
+            ],
+            "~services/*": [
+                "src/shared/services/*"
+            ],
             "~hooks/*": [
                 "src/shared/hooks/*"
+            ],
+            "~dev/*": [
+                "src/shared/dev/*"
+            ],
+            "~utils/*": [
+                "src/shared/utils/*"
+            ],
+            "~styles/*": [
+                "src/shared/styles/*"
             ]
         }
     }
