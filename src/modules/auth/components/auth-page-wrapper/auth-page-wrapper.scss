@@ -51,12 +51,7 @@
   }
 
   &__back-text {
-    @include typography.typography(
-      typography.$FONT_SIZE_BODY,
-      typography.$FONT_WEIGHT_MEDIUM,
-      typography.$LINE_HEIGHT_TINY,
-      0
-    );
+    @include typography.buttonText();
     color: colors.$COLOR_BLACK;
   }
 
@@ -145,12 +140,7 @@
   &__login-text {
     margin-top: 16px;
     text-align: center;
-    @include typography.typography(
-      typography.$FONT_SIZE_PRIMARY,
-      typography.$FONT_WEIGHT_MEDIUM,
-      typography.$LINE_HEIGHT_PRIMARY,
-      typography.$LETTER_SPACING_PRIMARY
-    );
+    @include typography.secondary();
     color: colors.$COLOR_GRAY_60;
   }
 

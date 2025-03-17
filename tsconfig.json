@@ -94,6 +94,9 @@
             "~services/*": [
                 "src/shared/services/*"
             ],
+            "~dashboard/*": [
+                "src/modules/dashboard/*"
+            ],
             "~hooks/*": [
                 "src/shared/hooks/*"
             ],

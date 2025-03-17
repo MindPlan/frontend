@@ -1,16 +1,20 @@
 import './sign-up-form.scss';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 
 import { authService } from '~modules/auth/services/auth.service';
 import { RegistrationRequest } from '~auth/types/registration-request.type';
 
 import Input from '~shared/components/input/input.component.tsx';
 import Button from '~shared/components/button/button.component.tsx';
-import Checkbox from "~shared/components/checkbox/checkbox.component.tsx";
+import Checkbox from '~shared/components/checkbox/checkbox.component.tsx';
 
-import { validator } from "~shared/utils/validator.util.ts";
+import { validator } from '~shared/utils/validator.util.ts';
+import EyeIcon from '~assets/icons/eye.svg';
+import EyeCloseIcon from '~assets/icons/close_eye.svg';
+import { ClickableIcon } from '../clickable-icon/clickable-icon.component';
 
 interface SignUpFormValues extends RegistrationRequest {
   agreeToTerms: boolean;
@@ -26,6 +30,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
     handleSubmit,
     formState: { errors },
     clearErrors,
+    setError,
   } = useForm<SignUpFormValues>({
     defaultValues: {
       name: '',
@@ -36,6 +41,8 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
     },
   });
 
+  const [showPassword, setShowPassword] = useState(false);
+
   const mutation = useMutation({
     mutationFn: (data: SignUpFormValues) => authService.registration(data),
     onSuccess: (_, variables) => {
@@ -45,19 +52,27 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
       onSuccess(variables.email);
     },
     onError: (error) => {
-      console.error('Registration failed', error);
-      alert('Something went wrong. Please try again.');
+      const axiosError = error as AxiosError;
+      if (axiosError.response?.status === 409) {
+        setError('email', {
+          type: 'manual',
+          message: 'This email is already in use. Please try another one.',
+        });
+      } else {
+        console.error('Registration failed', axiosError);
+        alert('Something went wrong. Please try again.');
+      }
     },
   });
 
   const onSubmit = (data: SignUpFormValues) => {
     mutation.mutate(data);
   };
-  
+
   // It is needed to remove errors, otherwise user does not have ability to click on input
   const onInputClick = () => {
-    clearErrors()
-  }
+    clearErrors();
+  };
 
   return (
     <form className='sign-up-form'>
@@ -71,12 +86,12 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
           required: 'is required',
           minLength: {
             value: 3,
-            message: 'Length of the first name must be at lest 3 characters.'
-          }
+            message: 'Length of the first name must be at lest 3 characters.',
+          },
         }}
         onClick={onInputClick}
       />
-      
+
       <Input
         belongsTo='sign-up-form'
         name='surname'
@@ -87,12 +102,12 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
           required: 'is required',
           minLength: {
             value: 3,
-            message: 'Length of the last name must be at lest 3 characters.'
-          }
+            message: 'Length of the last name must be at lest 3 characters.',
+          },
         }}
         onClick={onInputClick}
       />
-      
+
       <Input
         belongsTo='sign-up-form'
         name='email'
@@ -106,36 +121,35 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
         }}
         onClick={onInputClick}
       />
-      
-      {/*
-        TODO for Vira: add a clickable eye-icon to the password input.
-        
-        I would recommend to create HOC creator
-        const ClickableIcon = (Icon: string, onClick: () => void): ReactNode(i hope) => {}
-        And provide this icon to this Input.
-      */}
-      
+
       <Input
         belongsTo='sign-up-form'
         name='password'
         control={control}
         placeholder='Password'
-        type='password'
+        type={showPassword ? 'text' : 'password'}
         error={errors.password?.message}
         rules={{
           required: 'Password is required',
           validate: (password: string) => validator.validatePassword(password),
         }}
         onClick={onInputClick}
+        RightIcon={
+          <ClickableIcon
+            Icon={showPassword ? EyeCloseIcon : EyeIcon}
+            onClick={() => setShowPassword(!showPassword)}
+            className='sign-up-form__icon'
+          />
+        }
       />
-      
+
       <Checkbox
-        belongsTo="sign-up-form"
+        belongsTo='sign-up-form'
         name='agreeToTerms'
         control={control}
-        labelText="I agree to the processing of Personal Data"
+        labelText='I agree to the processing of Personal Data'
       />
-  
+
       {errors.agreeToTerms && (
         <p className='error-message'>{errors.agreeToTerms.message}</p>
       )}
@@ -143,7 +157,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
       <Button
         belongsTo='sign-up-form'
         callback={handleSubmit(onSubmit)}
-        isDisabled={mutation.isPending }
+        isDisabled={mutation.isPending}
       >
         Sign Up
       </Button>
