@@ -2,6 +2,7 @@ import './sign-up-form.scss';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 
 import { authService } from '~modules/auth/services/auth.service';
 import { RegistrationRequest } from '~auth/types/registration-request.type';
@@ -29,6 +30,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
     handleSubmit,
     formState: { errors },
     clearErrors,
+    setError,
   } = useForm<SignUpFormValues>({
     defaultValues: {
       name: '',
@@ -50,8 +52,16 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
       onSuccess(variables.email);
     },
     onError: (error) => {
-      console.error('Registration failed', error);
-      alert('Something went wrong. Please try again.');
+      const axiosError = error as AxiosError;
+      if (axiosError.response?.status === 409) {
+        setError('email', {
+          type: 'manual',
+          message: 'This email is already in use. Please try another one.',
+        });
+      } else {
+        console.error('Registration failed', axiosError);
+        alert('Something went wrong. Please try again.');
+      }
     },
   });
 
